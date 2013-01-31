@@ -1,0 +1,196 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <style type="text/css">
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; }
+code > span.dt { color: #902000; }
+code > span.dv { color: #40a070; }
+code > span.bn { color: #40a070; }
+code > span.fl { color: #40a070; }
+code > span.ch { color: #4070a0; }
+code > span.st { color: #4070a0; }
+code > span.co { color: #60a0b0; font-style: italic; }
+code > span.ot { color: #007020; }
+code > span.al { color: #ff0000; font-weight: bold; }
+code > span.fu { color: #06287e; }
+code > span.er { color: #ff0000; font-weight: bold; }
+  </style>
+  <link rel="stylesheet" href="../css/pmag.css" type="text/css" />
+</head>
+<body>
+<div id="header_wrap">
+   <h1>程式人雜誌 <sub> -- 2013 年 2 月號 (開放公益出版品)</sub></h1>
+</div>
+<div id="content">
+<h2 id="javascript-2-以原型為主的物件導向-作者陳鍾誠">JavaScript (2) – 以原型為主的物件導向 (作者：陳鍾誠)</h2>
+<p>雖然說，JavaScript 也能實作很好的物件導向功能，但是如果我們說 JavaScript 是一種物件導向語言，那麼會很容易造成混淆。因為 JavaScript 的物件導向非常非常的特別，與 Java, C++, C# 等語言的物件導向實作方法有很大的不同。</p>
+<p>嚴格的說，JavaScript 是一種原型導向語言，原型導向是一種特別簡單的物件導向實作機制，以下是幾個 JavaScript 的物件範例：</p>
+<pre class="sourceCode JavaScript"><code class="sourceCode javascript">obj = <span class="kw">new</span> <span class="kw">Object</span>()
+<span class="kw">obj</span>.<span class="fu">x</span> = <span class="dv">3</span>;        <span class="co">// 為 obj 新增一個欄位 x，其值設定為 3</span>
+<span class="kw">obj</span>.<span class="fu">y</span> = <span class="dv">5</span>;        <span class="co">// 為 obj 新增一個欄位 y，其值設定為 5</span>
+<span class="kw">obj</span>.<span class="fu">z</span> = <span class="kw">obj</span>.<span class="fu">x</span> + <span class="kw">obj</span>.<span class="fu">y</span>;    <span class="co">// 為 obj 新增一個欄位 z，其值設定為 x+y</span></code></pre>
+<p>對於曾經使用像 Java 這種傳統物件導向語言的人而言，會感覺到上述的程式很奇特，因為 obj 一開始只是一個空物件，並沒有包含任何的欄位，但是我們透過指定的方式，動態的為物件增添了 x, y, z 等欄位。</p>
+<p>物件導向基本上有三大特性，1.封裝 2. 繼承 3. 多型，瞭解這三個特性的實作方式，通常就可以學會一種語言的物件導向語法了，以下我們將分別針對 JavaScript 中的這三大特性進行介紹。</p>
+<h3 id="javascript-物件的封裝">JavaScript 物件的封裝</h3>
+<p>物件導向中的封裝特性，是指將「資料」與「函數」封入一種稱為「物件」的結構當中，以下是 JavaScript 的一個物件範例，其中 x, y 是資料，而 sum 則是函數，這些成員都被封裝在 obj 這樣一個建構函數當中，因此我們呼叫 var o = new obj() 這個指令時，就會建立一個新的物件，並傳回給 o 變數。</p>
+<p>程式範例: object.htm</p>
+<pre class="sourceCode html"><code class="sourceCode html"><span class="kw">&lt;html&gt;</span>
+<span class="kw">&lt;body&gt;</span>
+
+<span class="kw">&lt;script</span><span class="ot"> type=</span><span class="st">&quot;text/javascript&quot;</span><span class="kw">&gt;</span>
+<span class="er">function obj() {</span>
+  <span class="kw">this</span>.<span class="fu">x</span> = <span class="dv">3</span>;        <span class="co">// 第一種寫法，為 obj 新增一個欄位 x，其值設定為 3</span>
+  <span class="kw">this</span>[<span class="st">&quot;y&quot;</span>] = <span class="dv">5</span>;     <span class="co">// 第二種寫法，為 obj 新增一個欄位 y，其值設定為 5</span>
+<span class="er">  this.sum = function() { return this.x + this.y; } // 為 obj 新增一個欄位 add，其值為一個匿名函數</span>
+}
+
+<span class="er">var o = new obj();</span>
+
+<span class="er">document.write(&quot;o[&#39;x&#39;]=&quot;+o[&#39;x&#39;]+&quot; y=&quot;+o.y+&quot; sum()=&quot;+o.sum());</span>
+<span class="kw">&lt;/script&gt;</span>
+
+<span class="kw">&lt;/body&gt;</span>
+<span class="kw">&lt;/html&gt;</span></code></pre>
+<p>執行結果</p>
+<div class="figure">
+<img src="../img/jsObjectOutput.jpg" />
+</div>
+<p>在 JavaScript 當中，並沒有像 Java 或 C# 這樣的 class 關鍵字，沒有類別這樣的明顯概念，不會外顯的定義出物件的樣板，而是直接在建構函數中建立 this 物件的成員，然後在用 new 建立物件，這種方式很動態也很彈性，但卻不是一般的物件導向製作方式，與 Java 和 C# 有很明顯的差異。</p>
+<h3 id="javascript-物件的繼承">JavaScript 物件的繼承</h3>
+<p>物件導向中的繼承特性，是指「子物件」可以繼承「父物件」的資料與函數，並且進行修改，這樣我們就不需要重複的實作父物件已經有的函數，或者定義父物件已經有的資料，以達成程式碼重用的目的。</p>
+<p>以下範例中的 Student 物件就繼承了 Person 物件，其方法是在 Student 物件的建構函數中，指定 this.prototype = Person 以達到繼承的目的，然後再呼叫 this.prototype(name, age) 以呼叫父物件的建構函數，建立出 name, age, toStr() 物件內容。</p>
+<p>程式範例: inheritance.htm</p>
+<pre class="sourceCode html"><code class="sourceCode html"><span class="kw">&lt;html&gt;</span>
+<span class="kw">&lt;body&gt;</span>
+
+<span class="kw">&lt;script</span><span class="ot"> type=</span><span class="st">&quot;text/javascript&quot;</span><span class="kw">&gt;</span>
+<span class="kw">function</span> Person(name, age) {
+  <span class="kw">this</span>.<span class="fu">name</span> = name;
+  <span class="kw">this</span>.<span class="fu">age</span> = age;
+<span class="er">  this.toStr = function() { </span>
+    <span class="kw">return</span> <span class="st">&quot;Person:name=&quot;</span>+<span class="kw">this</span>.<span class="fu">name</span>+<span class="st">&quot; age=&quot;</span>+<span class="kw">this</span>.<span class="fu">age</span>; 
+  }
+}
+<span class="kw">var</span> john = <span class="kw">new</span> Person(<span class="st">&quot;John&quot;</span>, <span class="dv">40</span>);
+
+<span class="er">document.write(&quot;john.toStr()=&quot;+john.toStr()+&quot;&lt;BR/&gt;&quot;);</span>
+
+<span class="kw">function</span> Student(name, age, grade) {
+  <span class="kw">this</span>.<span class="fu">prototype</span> = Person;
+  <span class="kw">this</span>.<span class="fu">prototype</span>(name, age);
+  <span class="kw">this</span>.<span class="fu">grade</span> = grade;
+<span class="er">  this.toStr = function() { </span>
+    <span class="kw">return</span> <span class="st">&quot;Student:name=&quot;</span>+<span class="kw">this</span>.<span class="fu">name</span>+<span class="st">&quot; age=&quot;</span>+<span class="kw">this</span>.<span class="fu">age</span>+<span class="st">&quot; grade=&quot;</span>+<span class="kw">this</span>.<span class="fu">grade</span>; 
+  }
+}
+
+<span class="kw">var</span> tony = <span class="kw">new</span> Student(<span class="st">&quot;Tony&quot;</span>, <span class="dv">19</span>, <span class="st">&quot;Freshman&quot;</span>);
+
+<span class="er">document.write(&quot;tony.toStr()=&quot;+tony.toStr()+&quot;&lt;BR/&gt;&quot;);</span>
+<span class="kw">&lt;/script&gt;</span>
+
+<span class="kw">&lt;/body&gt;</span>
+<span class="kw">&lt;/html&gt;</span></code></pre>
+<p>執行結果</p>
+<div class="figure">
+<img src="../img/jsInheritanceOutput.jpg" />
+</div>
+<p>從上述的範例中您可以看到，JavaScript 的繼承是直接在子物件的建構函數當中呼叫父物件的建構函數所完成的，範例中的 prototype 這個屬性實作了繼承的特性，並且透過 this.prototype(name, age) 這樣的呼叫完成了父物件初始化的動作，這種方式繼動態又彈性，但仍然與 Java, C# 等語言有很大的不同，因此我們稱這種方式為基與原型的物件導向實作方式。</p>
+<h3 id="javascript-物件的多型">JavaScript 物件的多型</h3>
+<p>物件導向中的多型特性，是指當不同的「子物件」繼承同一個「父物件」時，我們可以透過宣告父物件容器，卻將內容指向子物件的方式，以便呼叫到不同子物件中的對應函數。</p>
+<p>以下範例中的 var array = [ john, tony ] 這一行，其中的 john 是 Person 類型的物件，tony 是 Student 類型的物件，但是由於 Student 繼承了 Person，而且兩者都有 toStr() 函數，因此當我們用 for (i in array) … array[i].toStr() … 這樣的方式呼叫 array[i].toStr() 時，對 john 物件會呼叫到 Person 的 toStr(), 而對 tony 物件會呼叫到 Student 的 toStr(), 這樣就達到了多型的結果。</p>
+<p>程式範例: polymorphism.htm</p>
+<pre class="sourceCode html"><code class="sourceCode html"><span class="kw">&lt;html&gt;</span>
+<span class="kw">&lt;body&gt;</span>
+ 
+<span class="kw">&lt;script</span><span class="ot"> type=</span><span class="st">&quot;text/javascript&quot;</span><span class="kw">&gt;</span>
+<span class="kw">function</span> Person(name, age) {
+  <span class="kw">this</span>.<span class="fu">name</span> = name;
+  <span class="kw">this</span>.<span class="fu">age</span> = age;
+<span class="er">  this.toStr = function() { </span>
+    <span class="kw">return</span> <span class="st">&quot;Person:name=&quot;</span>+<span class="kw">this</span>.<span class="fu">name</span>+<span class="st">&quot; age=&quot;</span>+<span class="kw">this</span>.<span class="fu">age</span>; 
+  }
+}
+<span class="kw">var</span> john = <span class="kw">new</span> Person(<span class="st">&quot;John&quot;</span>, <span class="dv">40</span>);
+ 
+<span class="kw">function</span> Student(name, age, grade) {
+  <span class="kw">this</span>.<span class="fu">prototype</span> = Person;
+  <span class="kw">this</span>.<span class="fu">prototype</span>(name, age);
+  <span class="kw">this</span>.<span class="fu">grade</span> = grade;
+<span class="er">  this.toStr = function() { </span>
+    <span class="kw">return</span> <span class="st">&quot;Student:name=&quot;</span>+<span class="kw">this</span>.<span class="fu">name</span>+<span class="st">&quot; age=&quot;</span>+<span class="kw">this</span>.<span class="fu">age</span>+<span class="st">&quot; grade=&quot;</span>+<span class="kw">this</span>.<span class="fu">grade</span>; 
+  }
+}
+ 
+<span class="kw">var</span> tony = <span class="kw">new</span> Student(<span class="st">&quot;Tony&quot;</span>, <span class="dv">19</span>, <span class="st">&quot;Freshman&quot;</span>);
+ 
+<span class="kw">var</span> array = [ john, tony ];
+ 
+<span class="kw">for</span> (i <span class="kw">in</span> array)
+<span class="er">  document.write(&quot;array[&quot;+i+&quot;].toStr()=&quot;+array[i].toStr()+&quot;&lt;BR/&gt;&quot;);</span>
+<span class="kw">&lt;/script&gt;</span>
+ 
+<span class="kw">&lt;/body&gt;</span>
+<span class="kw">&lt;/html&gt;</span></code></pre>
+<p>執行結果</p>
+<div class="figure">
+<img src="../img/jsPolymorphismOutput.jpg" />
+</div>
+<h3 id="javascript-物件的精簡表示法-json-物件資料交換格式">JavaScript 物件的精簡表示法 – JSON 物件資料交換格式</h3>
+<p>如果我們想直接在程式中宣告一個複雜的物件，可以使用 JavaScript 中的 {…} 與 […] 的語法組合，用簡單的語法建構出整個物件。這種格式也常被用在網頁程式的資料交換當中，因此有一個很特別的名稱叫 JSON （Javascript Object Notation）。</p>
+<p>目前網路上最常使用的資料交換格式是 XML，但是 XML 文件很繁瑣且囉嗦，讓使用者撰寫不方便，而且不容易嵌入網頁中進行處理。為了讓網頁上的共通程式語言 JavaScript 可以輕易的交換資料，網頁程式的設計者也常用 JSON 取代 XML 進行資料交換。</p>
+<p>以下是一個採用 JSON 格式的朋友資料範例，該範例中有兩個朋友，一個是 John, 22 歲，另一個是 Mary, 28 歲。</p>
+<pre class="sourceCode JavaScript"><code class="sourceCode javascript">{
+  <span class="st">&quot;friends&quot;</span>: [
+     {<span class="st">&quot;name&quot;</span>: <span class="st">&quot;John&quot;</span>, <span class="st">&quot;age&quot;</span>: <span class="dv">22</span> }
+     {<span class="st">&quot;name&quot;</span>: <span class="st">&quot;Mary&quot;</span>, <span class="st">&quot;age&quot;</span>: <span class="dv">28</span> }
+  ]
+}</code></pre>
+<p>程式範例：json.htm</p>
+<pre class="sourceCode html"><code class="sourceCode html"><span class="kw">&lt;html&gt;</span>
+<span class="kw">&lt;body&gt;</span>
+
+<span class="kw">&lt;script</span><span class="ot"> type=</span><span class="st">&quot;text/javascript&quot;</span><span class="kw">&gt;</span>
+
+<span class="kw">var</span> george = {
+  <span class="st">&quot;name&quot;</span>: <span class="st">&quot;George&quot;</span>,
+  <span class="st">&quot;age&quot;</span>: <span class="dv">25</span>,
+  <span class="st">&quot;friends&quot;</span>: [
+     {<span class="st">&quot;name&quot;</span>: <span class="st">&quot;John&quot;</span>, <span class="st">&quot;age&quot;</span>: <span class="dv">22</span> },
+     {<span class="st">&quot;name&quot;</span>: <span class="st">&quot;Mary&quot;</span>, <span class="st">&quot;age&quot;</span>: <span class="dv">28</span> }
+  ]
+};
+
+<span class="kw">document</span>.<span class="fu">write</span>(<span class="st">&quot;george.age=&quot;</span>+<span class="kw">george</span>.<span class="fu">age</span>+<span class="st">&quot;&lt;br/&gt;&quot;</span>);
+<span class="kw">document</span>.<span class="fu">write</span>(<span class="st">&quot;george.friends:</span><span class="ch">\n</span><span class="st">&lt;ol&gt;&quot;</span>);
+<span class="kw">var</span> friends = <span class="kw">george</span>.<span class="fu">friends</span>;
+<span class="kw">for</span> (i <span class="kw">in</span> friends)
+  <span class="kw">document</span>.<span class="fu">write</span>(<span class="st">&quot;&lt;li&gt;&quot;</span>+friends[i].<span class="fu">name</span>+<span class="st">&quot; is &quot;</span>+friends[i].<span class="fu">age</span>+<span class="st">&quot;years old!&lt;/li&gt;&quot;</span>);
+<span class="kw">document</span>.<span class="fu">write</span>(<span class="st">&quot;&lt;/ol&gt;&quot;</span>);
+<span class="kw">&lt;/script&gt;</span>
+ 
+<span class="kw">&lt;/body&gt;</span>
+<span class="kw">&lt;/html&gt;</span></code></pre>
+<p>執行結果</p>
+<div class="figure">
+<img src="../img/jsJsonOutput.jpg" />
+</div>
+<h3 id="結語">結語</h3>
+<p>以上我們簡單的介紹了 JavaScript 的物件導向功能，這種物件導向的實作方式由於是以原型為核心的，因此筆者喜歡稱 JavaScript 為原型導向 (prototype oriented) 的語言，雖然並不是很多人使用「原型導向」這個用法。</p>
+<p>在這兩期當中，我們從第一期的 JavaScript 語法基礎開始，到本期的物件導向介紹，大致已經將 JavaScript 的基本語法介紹完畢。在下一期當中，我們將會討論較為進階的 JavaScript 語言特性，像是匿名函數、閉包 (closure)、this 關鍵字的用法等等，我們下期見！</p>
+</div>
+<div id="footer">
+<a href="https://www.facebook.com/groups/programmerMagazine/">程式人雜誌</a> 2013 年 2 月號, <a href="http://creativecommons.org/licenses/by-nc-sa/3.0/tw/ ">創作共用授權：姓名標示、非商業性、相同方式分享</a>
+</div>
+</body>
+</html>

@@ -1,0 +1,109 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <link rel="stylesheet" href="../css/pmag.css" type="text/css" />
+</head>
+<body>
+<div id="header_wrap">
+   <h1>程式人雜誌 <sub> -- 2013 年 2 月號 (開放公益出版品)</sub></h1>
+</div>
+<div id="content">
+<h2 id="智慧型自動編譯-c-語言-vb-6.0-8x8-led-to-keil-c-code-for-89s51-作者廖憲得">智慧型自動編譯 C 語言 VB 6.0 8X8 LED To Keil C Code For 89S51 (作者：廖憲得)</h2>
+<h3 id="軟體介面">軟體介面</h3>
+<div class="figure">
+<img src="../img/vb1.png" />
+</div>
+<h3 id="軟體介紹與設計構想">軟體介紹與設計構想</h3>
+<p>這是一套由Visual Basic 6.0 設計的軟體，使用來與 89S51、8051 等其他單晶片結合使用的自動轉C語言工具。它的功能可以由使用者輕輕鬆鬆使用滑鼠點一點想要的花樣，並且一鍵自動產生為C語言的程式碼，省得晶片開發設計者需要花費許多計算時間來編譯一套屬於自我花樣的C語言，利用這套軟體只需要動動滑鼠，小小的幾個動作就能夠編譯出C語言的程式碼，甚至它可以搭配Keil C 等其他 89S51、8051 單晶片的編譯軟體。</p>
+<p>由於身為高職生的我，因為單晶片C語言89S51設計這門課的專題所需，為了有效率且快速的完成在矩陣式8x8 LED小綠人、小紅人…等等專題上，很多花樣LED燈的閃法、跑法、亮法剛開始都需要以人工的方式慢慢計算在編譯，常常因為一個不小心算錯而導致LED燈的變化不如預期，而使用Visual Basic 6.0 開發了這一套軟體，只需要透過基本的演算法、搭配字串的資料處理，很快的就能夠編寫出這樣的一套軟體。</p>
+<h3 id="軟體用途與未來趨勢">軟體用途與未來趨勢</h3>
+<p>其實開發這樣的軟體不只是可以運用在8X8 LED 上面，甚至我也撰寫過七段顯示器、蜂鳴器…等等的輔助軟體，相信不只是可以運用在C語言，也可以直接編譯成Java、C# 等等其他程式語言。甚至是運用在其他系統上，利用某個語言來編譯另外一個語言的概念可以衍生出更多讓開發變的更方便更便利的輔助軟體。</p>
+<p>未來趨勢當然不只是運用在單晶片、專題上面，甚至可能連手機遊戲、APP，在日後都有相關的輔助設計軟體產生。這種〝為了讓開發變得更便利〞的輔助軟體，在設計上也需要許多字串處理的巧思，只需要透過一些簡易的硬體演算法，像是在什麼情況中給0或給1等等，在設計此類型的輔助軟體就顯得相當容易！</p>
+<h3 id="使用效果">使用效果</h3>
+<div class="figure">
+<img src="../img/vb2.png" />
+</div>
+<div class="figure">
+<img src="../img/vb3.png" />
+</div>
+<h3 id="部分程式碼與註解">部分程式碼與註解</h3>
+<pre class="VisualBasic"><code>&#39; 以下開始皆為編譯成 C 語言的核心資料字串處理部分
+&#39; (KeilC 為輸出的 TextBox 文字方塊)
+KeilC = KeilC &amp; &quot;//此 89S51 C語言單晶片程式碼為 Visual Basic 6.0 智慧型程式碼產生器產生&quot; &amp; vbCrLf
+KeilC = KeilC &amp; &quot;//軟體設計 廖憲得&quot; &amp; vbCrLf &amp; vbCrLf
+KeilC = KeilC &amp; &quot;//宣告&quot; &amp; vbCrLf
+KeilC = KeilC &amp; &quot;#include &lt;reg51.h&gt;&quot; &amp; vbCrLf
+KeilC = KeilC &amp; &quot;#define OutputP0 P0&quot; &amp; vbCrLf
+KeilC = KeilC &amp; &quot;#define OutputP1 P1&quot; &amp; vbCrLf
+KeilC = KeilC &amp; &quot;#define OutputP2 P2&quot; &amp; vbCrLf
+KeilC = KeilC &amp; &quot;#define OutputP3 P3&quot; &amp; vbCrLf
+KeilC = KeilC &amp; &quot;void delay(int);&quot; &amp; vbCrLf &amp; vbCrLf
+&#39; OutputsFrame.Tag 為 Visual Basic 中設定的 N 個動作存在 OutputsFrame.Tag 中 利用來當動態陣列數用
+&#39; 而 VBOutputs0、VBOutputs1、VBOutputs2、VBOutputs3 則是分別需要輸出的資料 (部分為 16進制 )
+KeilC = KeilC &amp; &quot;char code OutTempP0 [ &quot; &amp; OutputsFrame.Tag &amp; &quot; ]= { &quot; &amp; VBOutputs0 &amp; &quot; }; &quot; &amp; vbCrLf
+KeilC = KeilC &amp; &quot;char code OutTempP1 [ &quot; &amp; OutputsFrame.Tag &amp; &quot; ]= { &quot; &amp; VBOutputs1 &amp; &quot; }; &quot; &amp; vbCrLf
+KeilC = KeilC &amp; &quot;char code OutTempP2 [ &quot; &amp; OutputsFrame.Tag &amp; &quot; ]= { &quot; &amp; VBOutputs2 &amp; &quot; }; &quot; &amp; vbCrLf
+KeilC = KeilC &amp; &quot;char code OutTempP3 [ &quot; &amp; OutputsFrame.Tag &amp; &quot; ]= { &quot; &amp; VBOutputs3 &amp; &quot; }; &quot; &amp; vbCrLf
+
+KeilC = KeilC &amp; &quot; main()&quot; &amp; vbCrLf
+KeilC = KeilC &amp; &quot;{&quot; &amp; vbCrLf
+KeilC = KeilC &amp; &quot;unsigned char i;&quot; &amp; vbCrLf
+KeilC = KeilC &amp; &quot;        while(1)&quot; &amp; vbCrLf
+KeilC = KeilC &amp; &quot;{&quot; &amp; vbCrLf
+KeilC = KeilC &amp; &quot;for (i=0;i&lt;&quot; &amp; OutputsFrame.Tag &amp; &quot;;i++)&quot; &amp; vbCrLf
+KeilC = KeilC &amp; &quot;{&quot; &amp; vbCrLf
+&#39; OutputP0、OutputP1、OutputP2、OutputP3 為 89S51 單晶片的 PX 輸出變數
+&#39; OutTempP0、OutTempP1、OutTempP2、OutTempP3 則為上面自動建立的陣列
+&#39; 原理就是把同一系列的一個所有動作自動存放到一個陣列當中，而要呼應這個動作就只需要做以下的呼叫指令。
+KeilC = KeilC &amp; &quot; OutputP0 = OutTempP0 [i];&quot; &amp; vbCrLf
+KeilC = KeilC &amp; &quot; OutputP1 = OutTempP1 [i];&quot; &amp; vbCrLf
+KeilC = KeilC &amp; &quot; OutputP2 = OutTempP2 [i];&quot; &amp; vbCrLf
+KeilC = KeilC &amp; &quot; OutputP3 = OutTempP3 [i];&quot; &amp; vbCrLf
+
+&#39; delay 為 C 語言中的延遲副程式 裡面的數字 20000 是拿來控制執行速度的
+KeilC = KeilC &amp; &quot; delay(20000);&quot; &amp; vbCrLf
+
+KeilC = KeilC &amp; &quot;}&quot; &amp; vbCrLf
+KeilC = KeilC &amp; &quot;}&quot; &amp; vbCrLf
+KeilC = KeilC &amp; &quot;}&quot; &amp; vbCrLf &amp; vbCrLf
+KeilC = KeilC &amp; &quot;//副程式&quot; &amp; vbCrLf
+KeilC = KeilC &amp; &quot;void delay(int x)&quot; &amp; vbCrLf
+KeilC = KeilC &amp; &quot;{&quot; &amp; vbCrLf
+KeilC = KeilC &amp; &quot;    int i;&quot; &amp; vbCrLf
+KeilC = KeilC &amp; &quot;    for (i=0;i&lt;x;i++);&quot; &amp; vbCrLf
+KeilC = KeilC &amp; &quot;}&quot; &amp; vbCrLf
+
+&#39; 哪一些要接地  設 P0 (OutTempP0) 要為控制是否接地的資料輸出位置
+For i = 7 To 0 Step -1
+        Nows = i
+        OpenOff = False
+    For J = 7 To 0 Step -1
+        If LED(Nows).Value = 1 Then OpenOff = True
+        Nows = Nows + 8
+    Next J
+        If OpenOff Then
+            P0 = P0 &amp; &quot;1&quot; &#39; 輸出 1 = 接地
+        Else
+            P0 = P0 &amp; &quot;0&quot; &#39; 輸出 0 = 導通
+        End If
+Next i
+&#39; 以上皆為演算過程，這部分可以跳過，只要依照您的條件設定輸出 0 或者 1 即可
+    OutTempP0 = OutTempP0 &amp; P0 &amp; &quot;,&quot;
+&#39; OutTempP0 為 P0 的資料輸出暫存變數 也是從這裡把資料送到 C 語言的陣列當中</code></pre>
+<p>(本文作者為廖憲得, 聯絡方式為 Facebook: <a href="http://www.facebook.com/MicrosoftDes">http://www.facebook.com/MicrosoftDes</a>, MSN: <script type="text/javascript">
+<!--
+h='&#x6d;&#x73;&#110;&#46;&#x63;&#x6f;&#x6d;';a='&#64;';n='&#100;&#x65;&#46;&#x63;&#x6f;&#x6d;';e=n+a+h;
+document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'">'+'De.com@msn.com'+'<\/'+'a'+'>');
+// -->
+</script><noscript>&#68;&#x65;&#46;&#x63;&#x6f;&#x6d;&#64;&#x6d;&#x73;&#110;&#46;&#x63;&#x6f;&#x6d;&#32;&#40;&#100;&#x65;&#46;&#x63;&#x6f;&#x6d;&#32;&#x61;&#116;&#32;&#x6d;&#x73;&#110;&#32;&#100;&#x6f;&#116;&#32;&#x63;&#x6f;&#x6d;&#x29;</noscript>)</p>
+</div>
+<div id="footer">
+<a href="https://www.facebook.com/groups/programmerMagazine/">程式人雜誌</a> 2013 年 2 月號, <a href="http://creativecommons.org/licenses/by-nc-sa/3.0/tw/ ">創作共用授權：姓名標示、非商業性、相同方式分享</a>
+</div>
+</body>
+</html>

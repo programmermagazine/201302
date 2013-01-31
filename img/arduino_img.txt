@@ -1,0 +1,20 @@
+ 磁碟區 G 中的磁碟沒有標籤。
+ 磁碟區序號:  6E2C-E088
+
+ G:\pmag\201302new\img 的目錄
+
+2013/01/17  下午 04:19            30,944 arduino_interface.png
+2013/01/17  下午 04:20            22,810 arduino_setup1.png
+2013/01/17  下午 04:20               361 arduino_setup2.png
+2013/01/17  下午 04:20            16,976 arduino_setup3.png
+2013/01/17  下午 04:21            49,934 arduino_driver.png
+2013/01/17  下午 04:21               361 arduino_blink1.png
+2013/01/17  下午 04:22            11,701 arduino_dont_compiling.png
+2013/01/17  下午 04:22            41,874 arduino_board.png
+2013/01/17  下午 04:23            20,650 arduino_serialport.png
+2013/01/17  下午 04:24               346 arduino_verify_icon.png
+2013/01/17  下午 04:24               731 arduino_upload_icon.png
+2013/01/17  下午 04:25           355,313 arduino_pin13led.png
+2013/01/17  下午 04:27                 0 arduino_img.txt
+              13 個檔案         552,001 位元組
+               0 個目錄  276,763,181,056 位元組可用

@@ -1,0 +1,76 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <link rel="stylesheet" href="../css/pmag.css" type="text/css" />
+</head>
+<body>
+<div id="header_wrap">
+   <h1>程式人雜誌 <sub> -- 2013 年 2 月號 (開放公益出版品)</sub></h1>
+</div>
+<div id="content">
+<h2 id="arduino入門教學2-準備開發環境-作者copper-maa">Arduino入門教學(2) – 準備開發環境 (作者：Copper Maa)</h2>
+<h3 id="取得-arduino-板子與-usb-傳輸線">取得 Arduino 板子與 USB 傳輸線</h3>
+<p>首先，你必須先準備一張 Arduino 板子與一條 USB 傳輸線:</p>
+<p>要購買 Arduino 板子，可以到國外網站 <a href="http://www.sparkfun.com">http://www.sparkfun.com</a> 購買，或是到 <a href="http://arduino.tw/">Arduino.TW 樂園</a>、<a href="http://www.aroboto.com/shop/">藝科資訊商城</a> 或者是露天拍賣這幾個台灣網站購買。Arduino 的板子有很多種版本，用 <a href="http://arduino.cc/en/Main/ArduinoBoardUno">Arduino Uno</a>, <a href="http://arduino.cc/en/Main/ArduinoBoardDuemilanove">Arduino Duemilanove</a> 或是 <a href="http://arduino.cc/en/Main/ArduinoBoardDiecimila">Diecimila</a> 都可以，一張板子大約 30 塊美金左右。</p>
+<h3 id="下載-arduino-開發環境">下載 Arduino 開發環境</h3>
+<p>到 Arduino 官方網站 <a href="http://arduino.cc/en/Main/Software">arduino.cc</a> 下載軟體。Arduino 軟體不需要安裝，下載後解開壓縮檔即可使用，解壓縮之後，雙擊 arduino.exe 就可以啟動主程式。Arduino 的軟體介面如下：</p>
+<div class="figure">
+<img src="../img/arduino_interface.png" />
+</div>
+<h3 id="連接控制板與安裝驅動程式">連接控制板與安裝驅動程式</h3>
+<p>Arduino 板子可以透過 USB 供電，不需要另外接電源。將 USB 傳輸線 一端接到電腦，一端接到 Arduino 板子後，會出現 FTDI 驅動程式安裝畫面：</p>
+<div class="figure">
+<img src="../img/arduino_setup1.png" />
+</div>
+<p>按下「下一步」，接著要指定驅動程式的位置。Arduino 軟體裏已經內附 FTDI 驅動程式，直接把位置指定到 “Arduino-00xxUSB Drivers” 後開始進行安裝，例如我用的版本是 Arduino-0021，所以我指定 “C:-0021-driversUSB Drivers”：</p>
+<div class="figure">
+<img src="../img/arduino_setup2.png" />
+</div>
+<p>安裝完成的畫面：</p>
+<div class="figure">
+<img src="../img/arduino_setup3.png" />
+</div>
+<p>打開「裝置管理員」，檢查 Arduino 連接在哪個 COM Port。以我的電腦為例，我的 Arduino 板子接在 COM4：</p>
+<div class="figure">
+<img src="../img/arduino_driver.png" />
+</div>
+<p>開啟並編譯 blink 範例程式</p>
+<p>雙擊 Arduino.exe 啟動 Arduino 主程式，點選 File &gt; Examples &gt; 1.Basics &gt; Blink. 打開 Blink 範例程式：</p>
+<div class="figure">
+<img src="../img/arduino_blink1.png" />
+</div>
+<p>接著按下 Verify 這個按鈕編譯程式，假如程式語法沒有錯誤，畫面下方的狀態列會出現 “Done Compiling.” 的訊息:</p>
+<div class="figure">
+<img src="../img/arduino_dont_compiling.png" />
+</div>
+<h3 id="選擇-arduino-控制板">選擇 Arduino 控制板</h3>
+<p>點 Tools &gt; Board 選擇跟你所用的 Arduino 對應的板子。我用的是 Arduino Duemilanove，所以我選擇 “Arduino Duemilanove or Nano w/ ATmega328” 這個選項：</p>
+<div class="figure">
+<img src="../img/arduino_board.png" />
+</div>
+<h3 id="選擇-serial-port">選擇 Serial port</h3>
+<p>點 Tools &gt; Serial Port 選擇 COM Port，以我的電腦為例，我的 Arduino 板子接在 COM4 上，所以我選擇 COM4：</p>
+<div class="figure">
+<img src="../img/arduino_serialport.png" />
+</div>
+<h3 id="上傳程式">上傳程式</h3>
+<p>最後按下 Upload 這個按鈕，等候幾秒鐘，應該會看到板子上的 RX 和 TX 兩個燈號會快速地閃爍，如果上傳成功，狀態列會出現 “Done uploading.” 的訊息：</p>
+<div class="figure">
+<img src="../img/arduino_done_uploading.png" />
+</div>
+<p>上傳完畢後，經過幾秒鐘後，板子上 pin 13 (L) 的燈號(黃色的燈號)就會開始閃爍，如果是的話，代表你的 Arduino 開發環境已準備好，可以開始學習寫 Arduino 程式了：</p>
+<div class="figure">
+<img src="../img/arduino_pin13led.png" />
+</div>
+<p>(本文作者為馬萬圳，原為網誌上的文章，經作者授權給程式人雜誌後由陳鍾誠編輯為此文。原文連結：<a href="http://coopermaa2nd.blogspot.tw/2010/12/arduino.html">http://coopermaa2nd.blogspot.tw/2010/12/arduino.html</a>)</p>
+</div>
+<div id="footer">
+<a href="https://www.facebook.com/groups/programmerMagazine/">程式人雜誌</a> 2013 年 2 月號, <a href="http://creativecommons.org/licenses/by-nc-sa/3.0/tw/ ">創作共用授權：姓名標示、非商業性、相同方式分享</a>
+</div>
+</body>
+</html>

@@ -1,0 +1,105 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <style type="text/css">
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; }
+code > span.dt { color: #902000; }
+code > span.dv { color: #40a070; }
+code > span.bn { color: #40a070; }
+code > span.fl { color: #40a070; }
+code > span.ch { color: #4070a0; }
+code > span.st { color: #4070a0; }
+code > span.co { color: #60a0b0; font-style: italic; }
+code > span.ot { color: #007020; }
+code > span.al { color: #ff0000; font-weight: bold; }
+code > span.fu { color: #06287e; }
+code > span.er { color: #ff0000; font-weight: bold; }
+  </style>
+  <link rel="stylesheet" href="../css/pmag.css" type="text/css" />
+</head>
+<body>
+<div id="header_wrap">
+   <h1>程式人雜誌 <sub> -- 2013 年 2 月號 (開放公益出版品)</sub></h1>
+</div>
+<div id="content">
+<h2 id="三角網格化-以z-scan演算法為例-作者吳栢融">三角網格化 –以Z-Scan演算法為例 (作者：吳栢融)</h2>
+<p>三角網格化（Triangulation）是電腦圖學（Computer Graphics）中有關建模技術（Modeling）的一個關鍵課題，我們都知道模型檔案最基本的由點和面構成。而對於一個面所構成的點我們並無嚴格規範，換言之，三角形，矩形都是一個面。如此一來再檔案的存取上造成許多麻煩的問題，如必須動態配置每一個面到底有多少索引、規劃每個面採何種方式來絢爛（Rending）。另外非常多的圖學演算法只作用與三角網格化後的多邊形網格，故通常我們會將模型轉換成三角形網格後發布、或做其他演算。</p>
+<p>三角網格化有非常多方法，筆者就不再一一細說，本文以Z-Scan的方式來討論如何將模型三角化。有關Z-Scan的方法提出筆者目前尚未得知為何人。如有讀者知道還請<a href="wupojung@gmail.com">來信</a>告知。感謝!!</p>
+<h3 id="基礎理論">基礎理論</h3>
+<p>我們都知道一個模型由點和面構成，但對於三角網格而言，他們是否存在一定的關係呢？事實上，我們可以透過歸納法來驗證下述公式。</p>
+<p><code>F=V-2</code></p>
+<p>其中V為構成該mesh的點的個數，F為若將該mesh三角網格化以後會得到的面的數量。我們可以參考下圖驗證之。</p>
+<div class="figure">
+<img src="../img/20121121131157krcp4.jpg" alt="圖1:面與點的關係圖" /><p class="caption">圖1:面與點的關係圖</p>
+</div>
+<p>此外，通常在OpenGL的環境中我們為了統一<code>normal</code>我們預設mesh的index是依照逆時針的方式記錄。如下圖所示，由於我們統一規範mesh的排序方式，所以我們可以藉由數學公式計算出mesh的normal，而這個normal的功能，筆者就不再這說明了。</p>
+<div class="figure">
+<img src="../img/20121121133615xdbms.jpg" alt="圖2:逆時針送點示意圖" /><p class="caption">圖2:逆時針送點示意圖</p>
+</div>
+<h3 id="程式分析">程式分析</h3>
+<p>為了取得一個最簡單的算法，筆者使用了歸納法來解這個問題，筆者假設圖3為圖2三角化的結果，而該多多邊形共計7個頂點（V=7），估根據上述公式我們可以得到三角化後應該產生5個三角形面（F=V-2=5），筆者將其標記為F0-F4，如圖3所示。並將每個三角形對應的三角形歸納入表1所示。</p>
+<div class="figure">
+<img src="../img/20121121140350n3xny.jpg" alt="圖3:分割圖" /><p class="caption">圖3:分割圖</p>
+</div>
+<div class="figure">
+<img src="../img/20121121140418kgtp4.jpg" alt="表1:三角化後的每個三角形的對應索引" /><p class="caption">表1:三角化後的每個三角形的對應索引</p>
+</div>
+<p>從上表我們可以得到如下關係:</p>
+<ul>
+<li>Index[0] 的次序為 0665544332….不斷遞減</li>
+<li>Index[1] 的次序為 1122334455….不斷遞增</li>
+<li>Index[2] 的次序為 62534… 分成奇偶分別遞增遞減</li>
+</ul>
+<p>於是我們做以下測試:</p>
+<pre class="sourceCode CPP"><code class="sourceCode cpp">    <span class="dt">int</span> V=<span class="dv">7</span>;
+    <span class="dt">int</span> F=V<span class="dv">-2</span>;</code></pre>
+<p>針對Index[0]有:</p>
+<pre class="sourceCode CPP"><code class="sourceCode cpp">    <span class="kw">for</span>(<span class="dt">int</span> i=<span class="dv">0</span>;i&lt;F;i++){
+        <span class="kw">if</span>(i==<span class="dv">0</span>)
+            cout&lt;&lt;i&lt;&lt;<span class="st">&quot;=&quot;</span>&lt;&lt;<span class="dv">0</span>&lt;&lt;endl;
+        <span class="kw">else</span>
+            cout&lt;&lt;i&lt;&lt;<span class="st">&quot;=&quot;</span>&lt;&lt;V-(i<span class="dv">+1</span>)/<span class="dv">2</span>&lt;&lt;endl;
+    }</code></pre>
+<p>針對Index[1]有:</p>
+<pre class="sourceCode CPP"><code class="sourceCode cpp">    <span class="kw">for</span>(<span class="dt">int</span> i=<span class="dv">0</span>;i&lt;F;i++){  
+        cout&lt;&lt;i&lt;&lt;<span class="st">&quot;=&quot;</span>&lt;&lt;(i<span class="dv">+2</span>)/<span class="dv">2</span>&lt;&lt;endl;
+    }</code></pre>
+<p>針對Index[2]有:</p>
+<pre class="sourceCode CPP"><code class="sourceCode cpp">    <span class="kw">for</span>(<span class="dt">int</span> i=<span class="dv">0</span>;i&lt;F;i++){  
+        <span class="kw">if</span>(i%<span class="dv">2</span>==<span class="dv">0</span>)
+            cout&lt;&lt;i&lt;&lt;<span class="st">&quot;=&quot;</span>&lt;&lt;V-(i<span class="dv">+2</span>)/<span class="dv">2</span>&lt;&lt;endl;
+        <span class="kw">else</span>
+            cout&lt;&lt;i&lt;&lt;<span class="st">&quot;=&quot;</span>&lt;&lt;(i<span class="dv">+3</span>)/<span class="dv">2</span>&lt;&lt;endl;
+    }</code></pre>
+<p>根據上述的分開測試。我們可以將所有程式合併在一起，如下所示：</p>
+<h3 id="完整代碼">完整代碼</h3>
+<pre class="sourceCode CPP"><code class="sourceCode cpp">    <span class="kw">for</span>(<span class="dt">int</span> i=<span class="dv">0</span>;i&lt;F;i++)
+    { 
+            <span class="kw">if</span>(i==<span class="dv">0</span>){
+                 cout&lt;&lt;i&lt;&lt;<span class="st">&quot;=&quot;</span>&lt;&lt;<span class="dv">0</span>&lt;&lt;<span class="st">&quot;</span><span class="ch">\t</span><span class="st">&quot;</span>&lt;&lt;i<span class="dv">+1</span>&lt;&lt;<span class="st">&quot;</span><span class="ch">\t</span><span class="st">&quot;</span>&lt;&lt;V<span class="dv">-1</span>&lt;&lt;endl;
+            }<span class="kw">else</span>{
+                  <span class="kw">if</span>(i%<span class="dv">2</span>==<span class="dv">0</span>)
+                     cout&lt;&lt;i&lt;&lt;<span class="st">&quot;=&quot;</span>&lt;&lt;V-(i<span class="dv">+1</span>)/<span class="dv">2</span>&lt;&lt;<span class="st">&quot;</span><span class="ch">\t</span><span class="st">&quot;</span>&lt;&lt;(i<span class="dv">+2</span>)/<span class="dv">2</span>&lt;&lt;<span class="st">&quot;</span><span class="ch">\t</span><span class="st">&quot;</span>&lt;&lt;V-(i<span class="dv">+2</span>)/<span class="dv">2</span>&lt;&lt;endl;
+                  <span class="kw">else</span>
+                    cout&lt;&lt;i&lt;&lt;<span class="st">&quot;=&quot;</span>&lt;&lt;V-(i<span class="dv">+1</span>)/<span class="dv">2</span>&lt;&lt;<span class="st">&quot;</span><span class="ch">\t</span><span class="st">&quot;</span>&lt;&lt;(i<span class="dv">+2</span>)/<span class="dv">2</span>&lt;&lt;<span class="st">&quot;</span><span class="ch">\t</span><span class="st">&quot;</span>&lt;&lt;(i<span class="dv">+3</span>)/<span class="dv">2</span>&lt;&lt;endl;                 
+            }
+       
+    }</code></pre>
+<h3 id="後記">後記</h3>
+<p>其實三角網格化還有非常多的方式可以完成，筆者本篇僅拋磚引玉，希望大家可以分享新的方法。</p>
+</div>
+<div id="footer">
+<a href="https://www.facebook.com/groups/programmerMagazine/">程式人雜誌</a> 2013 年 2 月號, <a href="http://creativecommons.org/licenses/by-nc-sa/3.0/tw/ ">創作共用授權：姓名標示、非商業性、相同方式分享</a>
+</div>
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <link rel="stylesheet" href="../css/pmag.css" type="text/css" />
+</head>
+<body>
+<div id="header_wrap">
+   <h1>程式人雜誌 <sub> -- 2013 年 2 月號 (開放公益出版品)</sub></h1>
+</div>
+<div id="content">
+<h2 id="硬體短訊-verilog與icarus">硬體短訊-Verilog與icarus</h2>
+<p>從進入超大型積體電路 VLSI 的時代之後，由於硬體 IC 的線路設計的複雜性已經很難用手工設計，因此 IC 電路的設計通常會採用硬體描述語言 (Hardware Description Language, HDL) 進行設計，而 HDL 的兩大語言 – VHDL 與 Verilog 則成為數位 IC 設計時最常使用的「程式語言」，雖然這種程式語言與一般的程式語言有相當程度的不同點，但是只要適應了這種語言的特性，程式人就能進入硬體設計的領域了。</p>
+<p>Icarus 是一組編譯與執行 Verilog 程式的工具軟體，您可以於其官網1上下載此一軟體的 Linux 版，或者從bleyer網站2上下載 Windows 版本，然後可以用 iverilog 這個指令編譯程式，接著用 vvp 這個指令執行 verilog 的測試主程式，以便觀察整個電路模擬結果。</p>
+<div class="figure">
+<img src="../img/icarus.png" alt="Icarus 官網畫面" /><p class="caption">Icarus 官網畫面</p>
+</div>
+<p>Icarus 的速度很快，比 Altera Quartus II 等工具快很多，原因應該是 Icarus 只模擬但不需要產生可燒入 FPGA 的碼，因此也不太需要進行電路層級的最佳化，筆者很喜歡這個特性，因為這可以讓我省去很多等待編譯的時間。【本文由陳鍾誠撰寫】</p>
+</div>
+<div id="footer">
+<a href="https://www.facebook.com/groups/programmerMagazine/">程式人雜誌</a> 2013 年 2 月號, <a href="http://creativecommons.org/licenses/by-nc-sa/3.0/tw/ ">創作共用授權：姓名標示、非商業性、相同方式分享</a>
+</div>
+</body>
+</html>

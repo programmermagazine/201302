@@ -1,0 +1,684 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <style type="text/css">
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; }
+code > span.dt { color: #902000; }
+code > span.dv { color: #40a070; }
+code > span.bn { color: #40a070; }
+code > span.fl { color: #40a070; }
+code > span.ch { color: #4070a0; }
+code > span.st { color: #4070a0; }
+code > span.co { color: #60a0b0; font-style: italic; }
+code > span.ot { color: #007020; }
+code > span.al { color: #ff0000; font-weight: bold; }
+code > span.fu { color: #06287e; }
+code > span.er { color: #ff0000; font-weight: bold; }
+  </style>
+  <link rel="stylesheet" href="../css/pmag.css" type="text/css" />
+</head>
+<body>
+<div id="header_wrap">
+   <h1>程式人雜誌 <sub> -- 2013 年 2 月號 (開放公益出版品)</sub></h1>
+</div>
+<div id="content">
+<div id="TOC">
+<ul>
+<li><a href="#程式人短訊">程式人短訊</a><ul>
+<li><a href="#軟體短訊-node.js">軟體短訊-Node.js</a></li>
+<li><a href="#硬體短訊-verilog與icarus">硬體短訊-Verilog與icarus</a></li>
+<li><a href="#動畫短訊-3d動畫軟體-blender">動畫短訊-3D動畫軟體 Blender</a></li>
+</ul></li>
+<li><a href="#程式人介紹">程式人介紹</a><ul>
+<li><a href="#unix與c的創造者ken-thompson與dennis-ritchie">UNIX與C的創造者–Ken Thompson與Dennis Ritchie</a></li>
+<li><a href="#qemu的創造者fabrice-bellard">QEMU的創造者–Fabrice Bellard</a></li>
+</ul></li>
+<li><a href="#程式人頻道">程式人頻道</a><ul>
+<li><a href="#看影片學-arduino">看影片學 Arduino</a></li>
+</ul></li>
+<li><a href="#程式人文集">程式人文集</a><ul>
+<li><a href="#arduino入門教學2-準備開發環境-作者copper-maa">Arduino入門教學(2) – 準備開發環境 (作者：Copper Maa)</a><ul>
+<li><a href="#取得-arduino-板子與-usb-傳輸線">取得 Arduino 板子與 USB 傳輸線</a></li>
+<li><a href="#下載-arduino-開發環境">下載 Arduino 開發環境</a></li>
+<li><a href="#連接控制板與安裝驅動程式">連接控制板與安裝驅動程式</a></li>
+<li><a href="#選擇-arduino-控制板">選擇 Arduino 控制板</a></li>
+<li><a href="#選擇-serial-port">選擇 Serial port</a></li>
+<li><a href="#上傳程式">上傳程式</a></li>
+</ul></li>
+<li><a href="#javascript-2-以原型為主的物件導向-作者陳鍾誠">JavaScript (2) – 以原型為主的物件導向 (作者：陳鍾誠)</a><ul>
+<li><a href="#javascript-物件的封裝">JavaScript 物件的封裝</a></li>
+<li><a href="#javascript-物件的繼承">JavaScript 物件的繼承</a></li>
+<li><a href="#javascript-物件的多型">JavaScript 物件的多型</a></li>
+<li><a href="#javascript-物件的精簡表示法-json-物件資料交換格式">JavaScript 物件的精簡表示法 – JSON 物件資料交換格式</a></li>
+<li><a href="#結語">結語</a></li>
+</ul></li>
+<li><a href="#三角網格化-以z-scan演算法為例-作者吳栢融">三角網格化 –以Z-Scan演算法為例 (作者：吳栢融)</a><ul>
+<li><a href="#基礎理論">基礎理論</a></li>
+<li><a href="#程式分析">程式分析</a></li>
+<li><a href="#完整代碼">完整代碼</a></li>
+<li><a href="#後記">後記</a></li>
+</ul></li>
+<li><a href="#智慧型自動編譯-c-語言-vb-6.0-8x8-led-to-keil-c-code-for-89s51-作者廖憲得">智慧型自動編譯 C 語言 VB 6.0 8X8 LED To Keil C Code For 89S51 (作者：廖憲得)</a><ul>
+<li><a href="#軟體介面">軟體介面</a></li>
+<li><a href="#軟體介紹與設計構想">軟體介紹與設計構想</a></li>
+<li><a href="#軟體用途與未來趨勢">軟體用途與未來趨勢</a></li>
+<li><a href="#使用效果">使用效果</a></li>
+<li><a href="#部分程式碼與註解">部分程式碼與註解</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#雜誌訊息">雜誌訊息</a><ul>
+<li><a href="#授權聲明">授權聲明</a></li>
+<li><a href="#讀者訂閱">讀者訂閱</a></li>
+<li><a href="#投稿須知">投稿須知</a></li>
+<li><a href="#參與編輯">參與編輯</a></li>
+<li><a href="#公益資訊">公益資訊</a></li>
+</ul></li>
+</ul>
+</div>
+<h1 id="程式人短訊"><a href="#程式人短訊">程式人短訊</a></h1>
+<h2 id="軟體短訊-node.js"><a href="#軟體短訊-node.js">軟體短訊-Node.js</a></h2>
+<p>對許多程式人來說一直都是個大障礙，除了沒有好的開發環境之外，無法用 JavaScript 撰寫 Desktop 或 Server 端的程式也是個大問題，還好這些問題現在都有了解法。 Node.js 可以讓你在 Server 端開發JavaScript 程式，就像 Ruby on Rail 或 PHP 一樣，但是卻有著全然不同的設計邏輯與想法。</p>
+<div class="figure">
+<img src="../img/nodejs.png" alt="node.js 官網畫面" /><p class="caption">node.js 官網畫面</p>
+</div>
+<p>透過 Node.js , 您可以很容易的測試 JavaScript 程式，並且在 Web 開發的前後端同時使用 node.js，而不需要在前後端分別使用不同語言，這點讓 node.js 特別有吸引力。 以下是一個 node.js 的 「HelloWorld !」 範例程式，您可以看到這種寫法與 PHP 那類將程式嵌入在 HTML 當中的寫法很不相同，反而比較像用 Socket 撰寫網路程式的樣子，但又有些不同。</p>
+<pre class="sourceCode JavaScript"><code class="sourceCode javascript"><span class="kw">var</span> http = require(<span class="ch">&#39;http&#39;</span>);
+ 
+<span class="kw">http</span>.<span class="fu">createServer</span>(<span class="kw">function</span> (request, response) {
+    <span class="kw">response</span>.<span class="fu">writeHead</span>(<span class="dv">200</span>, {<span class="ch">&#39;Content-Type&#39;</span>: <span class="ch">&#39;text/plain&#39;</span>});
+    <span class="kw">response</span>.<span class="fu">end</span>(<span class="ch">&#39;Hello World\n&#39;</span>);
+}).<span class="fu">listen</span>(<span class="dv">8000</span>);
+
+<span class="kw">console</span>.<span class="fu">log</span>(<span class="ch">&#39;Server running at http://127.0.0.1:8000/&#39;</span>);</code></pre>
+<p>若您想學習 node.js 程式設計，網路上已經有一群熱心的網友寫出了「node.js 教學手冊」這本中文書，您可以從 <a href="http://book.nodejs.tw/">http://book.nodejs.tw/</a> 這個網址中下載到該電子書。【本文由陳鍾誠取材並修改自維基百科】</p>
+<h2 id="硬體短訊-verilog與icarus"><a href="#硬體短訊-verilog與icarus">硬體短訊-Verilog與icarus</a></h2>
+<p>從進入超大型積體電路 VLSI 的時代之後，由於硬體 IC 的線路設計的複雜性已經很難用手工設計，因此 IC 電路的設計通常會採用硬體描述語言 (Hardware Description Language, HDL) 進行設計，而 HDL 的兩大語言 – VHDL 與 Verilog 則成為數位 IC 設計時最常使用的「程式語言」，雖然這種程式語言與一般的程式語言有相當程度的不同點，但是只要適應了這種語言的特性，程式人就能進入硬體設計的領域了。</p>
+<p>Icarus 是一組編譯與執行 Verilog 程式的工具軟體，您可以於其官網1上下載此一軟體的 Linux 版，或者從bleyer網站2上下載 Windows 版本，然後可以用 iverilog 這個指令編譯程式，接著用 vvp 這個指令執行 verilog 的測試主程式，以便觀察整個電路模擬結果。</p>
+<div class="figure">
+<img src="../img/icarus.png" alt="Icarus 官網畫面" /><p class="caption">Icarus 官網畫面</p>
+</div>
+<p>Icarus 的速度很快，比 Altera Quartus II 等工具快很多，原因應該是 Icarus 只模擬但不需要產生可燒入 FPGA 的碼，因此也不太需要進行電路層級的最佳化，筆者很喜歡這個特性，因為這可以讓我省去很多等待編譯的時間。【本文由陳鍾誠撰寫】</p>
+<h2 id="動畫短訊-3d動畫軟體-blender"><a href="#動畫短訊-3d動畫軟體-blender">動畫短訊-3D動畫軟體 Blender</a></h2>
+<p>很多人都知道 3D-Max 與 Maya 這兩套 3D 動畫軟體，但是知道 Blender 這套 3D 動畫軟體的人就少了許多。但事實上，Blender 這套軟體的能力已經非常強大，並不比 3D-Max 或 Maya遜色了，而且、Blender 是一套您可以合法免費使用的開放原始碼軟體。</p>
+<p>您可以從 Blender 的官網3下載此一軟體，2.65a 版 windows 安裝檔目前大小為 34MB 。</p>
+<div class="figure">
+<img src="../img/blender_download.png" alt="Blender 下載畫面" /><p class="caption">Blender 下載畫面</p>
+</div>
+<p>Blender 支援 Windows, Linux, MAC OS X, FreeBSD 等環境，而且自從 2.5 版開始，功能就變得很強大，足以與 3D-Max , Maya 競爭了，如果您像筆者一樣，想要瞭解 3D 動畫的領域，從 Blender 開始學習會是一個很不錯的方式。</p>
+<p>筆者已經用 Blender 教授動畫四年了，您可以從筆者的網站上取得 Blender 的入門資訊，學習 Blender 最好是觀看教學影片，然後跟著一步一步操作。 下圖是Blender 安裝開啟後的畫面，有興趣的讀者現在就可以立刻下載安裝。</p>
+<div class="figure">
+<img src="../img/blender_start.png" alt="Blender 軟體畫面" /><p class="caption">Blender 軟體畫面</p>
+</div>
+<p>歡迎與筆者一同進入 Blender 的 3D 動畫世界。【本文由陳鍾誠撰寫】</p>
+<h1 id="程式人介紹"><a href="#程式人介紹">程式人介紹</a></h1>
+<h2 id="unix與c的創造者ken-thompson與dennis-ritchie"><a href="#unix與c的創造者ken-thompson與dennis-ritchie">UNIX與C的創造者–Ken Thompson與Dennis Ritchie</a></h2>
+<p>如果說程式領域有偉人的話，那這兩位仁兄肯定會入列 – 湯普遜 (Ken Thompson) &amp; 里奇 (Dennis Ritchie)，他們兩位在 貝爾實驗室帶領一個小組發展出了 UNIX 和 C 語言，影響了千千萬萬的程式人，我們幾乎都活在他們的陰影之下 :)。</p>
+<div class="figure">
+<img src="../img/KR.png" alt="Ken Thompson&amp;Dennis Ritchie" /><p class="caption">Ken Thompson&amp;Dennis Ritchie</p>
+</div>
+<p>最初的Unix是用組合語言編寫的，一些應用是由叫做B語言的解釋型語言和組合語言混合編寫的。B語言在進行系統編程時不夠強大，所以湯普遜和里奇對其進行了改造，並於1971年共同發明了C語言。1973年湯普遜和里奇用C語言重寫了Unix。在當時，為了實作最高效率，系統程式都是由組合語言編寫，所以湯普遜和里奇此舉是極具大膽創新和革命意義的。用C語言編寫的Unix代碼簡潔緊湊、易移植、易讀、易修改，為此後Unix的發展奠定了堅實基礎。</p>
+<p>1974年，湯普遜和里奇合作在ACM通訊上發表了一篇關於UNIX的文章，這是UNIX第一次出現在貝爾實驗室以外。此後UNIX被政府機關，研究機構，企業和大學注意到，並逐漸流行開來。</p>
+<p>1975年，UNIX發行了4、5、6三個版本。1978年，已經有大約600台電腦在執行UNIX。1979年，版本7發行，這是最後一個廣泛發行的研究型UNIX版本。20世紀80年代相繼發行的8、9、10版本只授權給了少數大學。此後這個方向上的研究導致了九號計畫的出現，這是一個新的分布式作業系統。</p>
+<p>1982年，AT&amp;T基於版本7開發了UNIX System Ⅲ的第一個版本，這是一個商業版本僅供出售。為了解決混亂的UNIX版本情況，AT&amp;T綜合了其他大學和公司開發的各種UNIX，開發了UNIX System V Release 1。</p>
+<p>這個新的UNIX商業發行版本不再包含原始碼，所以加州大學柏克萊分校繼續開發 BSD UNIX，作為 UNIX System III和V的替代選擇。BSD對UNIX最重要的貢獻之一是TCP/IP。BSD有8個主要的發行版中包含了TCP/IP：4.1c、4.2、4.3、4.3-Tahoe、4.3-Reno、Net2、4.4以及4.4-lite。這些發行版中的TCP/IP代碼幾乎是現在所有系統中TCP/IP實作的前輩，包括AT&amp;T System V UNIX和Microsoft Windows。</p>
+<p>作業系統的設計通常是一個很大的工程，幾乎沒有辦法在大學當中傳授實際的設計技巧，以至於所有作業系統的課程幾乎都是以理論為主的方式，這讓作業系統成為程式設計師心中的一個未解之謎。</p>
+<p><a href="http://en.wikipedia.org/wiki/Version_6_Unix">UNIXv6</a> 是一個相當重要且小型的作業系統，幾乎是所有現代 UNIX 的始祖，雖然 UNIXv6 是在 PDP11 機器上寫的，但在網路上卻有相當完整的資料可以參考，UNIX v6 的作業系統核心大約為 10000 行，因此相當適合想要撰寫作業系統的人學習研究，像是 John Lion 所寫的 <a href="http://www.lemis.com/grog/Documentation/Lions/">Commentary on the Sixth Edition UNIX Operating System</a> 就是一個很有用的參考文獻。 。</p>
+<p>在 MIT 的課程當中，有一門<a href="http://pdos.csail.mit.edu/6.828/">編號 6.8283 的 Operating System Engineering</a>，其教師 <a href="http://pdos.csail.mit.edu/~kaashoek/">Frans Kaashoek</a> 將 UNIX v6 的原始碼，修改之後放在 x86 電腦上執行，形成一個只有八千行的 UNIX v6 現代版，稱為 UNIX xv6，Frans Kaashoek 用這個版本作為作業系統課程的起點，這讓我們有機會一睹作業系統的核心原理。【本文由陳鍾誠取材並修改自維基百科】</p>
+<h2 id="qemu的創造者fabrice-bellard"><a href="#qemu的創造者fabrice-bellard">QEMU的創造者–Fabrice Bellard</a></h2>
+<p>如果說 43 歲的我還可以像青少年一樣有偶像的話，那Fabrice Bellard1 2 絕對是我永遠的偶像，這位法國籍的程式設計師，單槍匹馬創造出了一系列讓人驚訝的軟體。</p>
+<p>Fabrice Bellard 創造過甚麼軟體呢？您可以從搭他的網站3看到他的作品，其中最知名的是 QEMU 這個虛擬機，另外還有 TinyCC 這個微小又強大的 C 語言編譯器，另外他還能讓 Linux 直接在瀏覽器中用 JavaScript 把整個作業系統 Boot 起來，這樣的技術根本就像神乎其技一般，讓我們嘆為觀止，您可以從 <a href="http://bellard.org/">http://bellard.org/</a> 中看到他的作品。</p>
+<div class="figure">
+<img src="../img/bellard.png" alt="Fabrice Bellard 的網站" /><p class="caption">Fabrice Bellard 的網站</p>
+</div>
+<p>Fabrice Bellard 出生於1972年法國的Grenoble地區。在高中就讀期間開發了著名的可執行壓縮程序LZEXE，這是當年DOS上第一個廣泛使用的文件壓縮程序。</p>
+<p>大學就讀於巴黎高等綜合理工學院，後在國立巴黎高等電信學院攻讀。 1996年,他編寫了一個簡潔但是完整的C編譯器和一個Java虛擬機Harissa。Fabrice Bellard發明的TinyCC是GNU/Linux環境下最小的ANSI C語言編譯器，是目前號稱編譯速度最快的C編譯器。</p>
+<p>1997年他提出了最快速的計算圓周率的演算法，是Bailey-Borwein-Plouffe 公式的變體。</p>
+<p>在計算圓周率的過程中，Fabrice Bellard使用改良後的查德諾夫斯基方程演算法來進行圓周率的計算，並使用Bailey-Borwein-Plouffe 演算法來驗證計算的結果。為了紀念他對圓周率演算法所作出的傑出貢獻，Fabrice Bellard所使用的改良型演算法被命名為Fabrice Bellard演算法，這種演算法是目前所有圓周率演算法中最快的一種，這個計算N位PI的公式比傳統的BBQ演算法要快47%。</p>
+<p>1998年編寫了一個簡潔的OpenGL實現TinyGL. 2000年,他化名Gerard Lantau，創建了FFmpeg項目。FFmpeg 單詞中的FF 指的是Fast Forward，FFmpeg這個2000年發起著名的開源多媒體播放器項目， 是MPlayer的姊妹項目。這是一個如此重要的成就，沒有這個項目，就沒有我們今天廣為使用的暴風影音等播放器。這個多平台、多功能的多媒體編碼解碼器由Fabrice Bellard發起並管理，現在是由Michael Niedermayer在進行維護。</p>
+<p>2003年,開發了Emacs克隆版QEmacs。</p>
+<p>2004年,他編寫了一個只有138KB的啟動載入程序TCCBOOT，可以在15秒內從原始碼編譯並啟動Linux系統。</p>
+<p>2005年,用普通PC和VGA卡設計了一個數字電視系統。</p>
+<p>2009年12月31日，他聲稱打破了圓周率計算的世界紀錄，算出小數點後2.7萬億位，僅用一台普通PC機。他使用的個人PC價格不到2000歐元，僅用了116天，就計算出了PI的小數點後第2.7萬億位，超過了由目前排名世界第47位的T2K Open 超級計算機於2009年8月17日創造的世界紀錄。新紀錄比原紀錄多出1200億位，然而，他使用的這台桌面電腦的配置僅為：2.93GHz Core i7 CPU，6GB內存，7.5TB硬碟!</p>
+<p>2011年，他單用JavaScript寫了一個PC虛擬機 Jslinux。這個虛擬機模擬了一個32位的x86兼容處理器，一個8259可程式中斷控制器，一個8254可程式中斷計時器，和一個16450 UART。</p>
+<p>2012年, 在PC上用軟體實現4G LTE基站.</p>
+<p>Fabrice Bellard 的作品通常有個特色，程式碼採用極簡風格，完全單人手工打造，通常又小又精美，而且通常速度奇快無比。筆者真的對他是景仰萬分，這讓我不禁開始想像，哪一天我可以創造出像他那樣的軟體 … (筆者開始作白日夢中…)【本文由陳鍾誠取材並修改自維基百科】。</p>
+<h1 id="程式人頻道"><a href="#程式人頻道">程式人頻道</a></h1>
+<h2 id="看影片學-arduino"><a href="#看影片學-arduino">看影片學 Arduino</a></h2>
+<p>最近這幾年，我逐漸養成了一個習慣，如果我想學習一個新的領域，就會先上 Youtube 找找相關影片看看。前一陣子我開始對單晶片與 Arduino 發生興趣，於是除了買 <a href="http://goods.ruten.com.tw/item/show?21206307106390">一組Arduino套件</a> 來玩玩看之外，也到 Youtube 找了一些 Arduino 的相關影片來看。</p>
+<p>我發現用影片學 Arduino 是很棒的方法，像是 Jeremy Blum 這位年輕人，就拍了一系列的 Arduino 教學影片，並且在 <a href="http://www.jeremyblum.com/category/arduino-tutorials/">Jeremy Blum 網站的 ARDUINO TUTORIALS</a> 中附上完整的程式碼3，以下是Jeremy 的一系列 Arduino 教學影片整理。</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">主題</th>
+<th align="left">影片網址</th>
+<th align="left">說明</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Getting Acquainted with Arduino</td>
+<td align="left"><a href="http://youtu.be/fCxzA9_kg6s">http://youtu.be/fCxzA9_kg6s</a></td>
+<td align="left">熟悉 Arduino</td>
+</tr>
+<tr class="even">
+<td align="left">Buttons, PWM, and Functions</td>
+<td align="left"><a href="http://youtu.be/_LCCGFSMOr4">http://youtu.be/_LCCGFSMOr4</a></td>
+<td align="left">按鈕、函數、振幅調整</td>
+</tr>
+<tr class="odd">
+<td align="left">Electrical Engineering Basics</td>
+<td align="left"><a href="http://youtu.be/abWCy_aOSwY">http://youtu.be/abWCy_aOSwY</a></td>
+<td align="left">電子學基礎</td>
+</tr>
+<tr class="even">
+<td align="left">Analog Inputs</td>
+<td align="left"><a href="http://youtu.be/js4TK0U848I">http://youtu.be/js4TK0U848I</a></td>
+<td align="left">類比輸入</td>
+</tr>
+<tr class="odd">
+<td align="left">Motors and Transistors</td>
+<td align="left"><a href="http://youtu.be/5bHPKU4ybHY">http://youtu.be/5bHPKU4ybHY</a></td>
+<td align="left">馬達與電晶體</td>
+</tr>
+<tr class="even">
+<td align="left">Serial Communication and Processing</td>
+<td align="left"><a href="http://youtu.be/g0pSfyXOXj8">http://youtu.be/g0pSfyXOXj8</a></td>
+<td align="left">序列通訊</td>
+</tr>
+<tr class="odd">
+<td align="left">I2C Communication and Processing</td>
+<td align="left"><a href="http://youtu.be/GJX0BRUagCg">http://youtu.be/GJX0BRUagCg</a></td>
+<td align="left">I2C 通訊</td>
+</tr>
+<tr class="even">
+<td align="left">SPI Interfaces</td>
+<td align="left"><a href="http://youtu.be/1nO2SSExEnQ">http://youtu.be/1nO2SSExEnQ</a></td>
+<td align="left">SPI 界面</td>
+</tr>
+<tr class="odd">
+<td align="left">Wireless Communication</td>
+<td align="left"><a href="http://youtu.be/vKVNmA8C6m8">http://youtu.be/vKVNmA8C6m8</a></td>
+<td align="left">無線通訊</td>
+</tr>
+<tr class="even">
+<td align="left">Interrupts and Hardware Debouncing</td>
+<td align="left"><a href="http://youtu.be/CRJUdf5TTQQ">http://youtu.be/CRJUdf5TTQQ</a></td>
+<td align="left">中斷與去除跳動</td>
+</tr>
+<tr class="odd">
+<td align="left">SD Cards and Datalogging</td>
+<td align="left"><a href="http://youtu.be/5v5A3j7Rrco">http://youtu.be/5v5A3j7Rrco</a></td>
+<td align="left">用SD Card記錄資料</td>
+</tr>
+<tr class="even">
+<td align="left">RFID Card Reading</td>
+<td align="left"><a href="http://youtu.be/gIlSLwcbeTU">http://youtu.be/gIlSLwcbeTU</a></td>
+<td align="left">讀取 RFID 卡</td>
+</tr>
+<tr class="odd">
+<td align="left">Liquid Crystal Displays (LCDs)</td>
+<td align="left"><a href="http://youtu.be/oIiDseJO4dM">http://youtu.be/oIiDseJO4dM</a></td>
+<td align="left">LCD 液晶顯示</td>
+</tr>
+<tr class="even">
+<td align="left">Holiday Lights and Sounds Spectacular!</td>
+<td align="left"><a href="http://youtu.be/CoG_Czyr7z0">http://youtu.be/CoG_Czyr7z0</a></td>
+<td align="left">光線與聲音</td>
+</tr>
+<tr class="odd">
+<td align="left">GPS Tracking</td>
+<td align="left"><a href="http://youtu.be/TtZEZYQG0xk">http://youtu.be/TtZEZYQG0xk</a></td>
+<td align="left">GPS衛星定位</td>
+</tr>
+</tbody>
+</table>
+<p>看完了 Jeremy 的示範，覺得真的相當過癮。但是獨學而無友，則孤陋而寡聞，還好網友 Cooper Maa 又在網誌中介紹了 Stefan Hermann 的教學影片，這一系列的影片則是又短又精彩，Copper Maa 以經幫我們整理成網誌了，您可以連到以下網址去看看Stefan Hermann 的教學影片與 Cooper Maa 的摘要，保證不虛此行。</p>
+<ul>
+<li><a href="http://coopermaa2nd.blogspot.tw/2011/12/arduino-video-workshop.html">http://coopermaa2nd.blogspot.tw/2011/12/arduino-video-workshop.html</a></li>
+</ul>
+<h1 id="程式人文集"><a href="#程式人文集">程式人文集</a></h1>
+<h2 id="arduino入門教學2-準備開發環境-作者copper-maa"><a href="#arduino入門教學2-準備開發環境-作者copper-maa">Arduino入門教學(2) – 準備開發環境 (作者：Copper Maa)</a></h2>
+<h3 id="取得-arduino-板子與-usb-傳輸線"><a href="#取得-arduino-板子與-usb-傳輸線">取得 Arduino 板子與 USB 傳輸線</a></h3>
+<p>首先，你必須先準備一張 Arduino 板子與一條 USB 傳輸線:</p>
+<p>要購買 Arduino 板子，可以到國外網站 <a href="http://www.sparkfun.com">http://www.sparkfun.com</a> 購買，或是到 <a href="http://arduino.tw/">Arduino.TW 樂園</a>、<a href="http://www.aroboto.com/shop/">藝科資訊商城</a> 或者是露天拍賣這幾個台灣網站購買。Arduino 的板子有很多種版本，用 <a href="http://arduino.cc/en/Main/ArduinoBoardUno">Arduino Uno</a>, <a href="http://arduino.cc/en/Main/ArduinoBoardDuemilanove">Arduino Duemilanove</a> 或是 <a href="http://arduino.cc/en/Main/ArduinoBoardDiecimila">Diecimila</a> 都可以，一張板子大約 30 塊美金左右。</p>
+<h3 id="下載-arduino-開發環境"><a href="#下載-arduino-開發環境">下載 Arduino 開發環境</a></h3>
+<p>到 Arduino 官方網站 <a href="http://arduino.cc/en/Main/Software">arduino.cc</a> 下載軟體。Arduino 軟體不需要安裝，下載後解開壓縮檔即可使用，解壓縮之後，雙擊 arduino.exe 就可以啟動主程式。Arduino 的軟體介面如下：</p>
+<div class="figure">
+<img src="../img/arduino_interface.png" />
+</div>
+<h3 id="連接控制板與安裝驅動程式"><a href="#連接控制板與安裝驅動程式">連接控制板與安裝驅動程式</a></h3>
+<p>Arduino 板子可以透過 USB 供電，不需要另外接電源。將 USB 傳輸線 一端接到電腦，一端接到 Arduino 板子後，會出現 FTDI 驅動程式安裝畫面：</p>
+<div class="figure">
+<img src="../img/arduino_setup1.png" />
+</div>
+<p>按下「下一步」，接著要指定驅動程式的位置。Arduino 軟體裏已經內附 FTDI 驅動程式，直接把位置指定到 “Arduino-00xxUSB Drivers” 後開始進行安裝，例如我用的版本是 Arduino-0021，所以我指定 “C:-0021-driversUSB Drivers”：</p>
+<div class="figure">
+<img src="../img/arduino_setup2.png" />
+</div>
+<p>安裝完成的畫面：</p>
+<div class="figure">
+<img src="../img/arduino_setup3.png" />
+</div>
+<p>打開「裝置管理員」，檢查 Arduino 連接在哪個 COM Port。以我的電腦為例，我的 Arduino 板子接在 COM4：</p>
+<div class="figure">
+<img src="../img/arduino_driver.png" />
+</div>
+<p>開啟並編譯 blink 範例程式</p>
+<p>雙擊 Arduino.exe 啟動 Arduino 主程式，點選 File &gt; Examples &gt; 1.Basics &gt; Blink. 打開 Blink 範例程式：</p>
+<div class="figure">
+<img src="../img/arduino_blink1.png" />
+</div>
+<p>接著按下 Verify 這個按鈕編譯程式，假如程式語法沒有錯誤，畫面下方的狀態列會出現 “Done Compiling.” 的訊息:</p>
+<div class="figure">
+<img src="../img/arduino_dont_compiling.png" />
+</div>
+<h3 id="選擇-arduino-控制板"><a href="#選擇-arduino-控制板">選擇 Arduino 控制板</a></h3>
+<p>點 Tools &gt; Board 選擇跟你所用的 Arduino 對應的板子。我用的是 Arduino Duemilanove，所以我選擇 “Arduino Duemilanove or Nano w/ ATmega328” 這個選項：</p>
+<div class="figure">
+<img src="../img/arduino_board.png" />
+</div>
+<h3 id="選擇-serial-port"><a href="#選擇-serial-port">選擇 Serial port</a></h3>
+<p>點 Tools &gt; Serial Port 選擇 COM Port，以我的電腦為例，我的 Arduino 板子接在 COM4 上，所以我選擇 COM4：</p>
+<div class="figure">
+<img src="../img/arduino_serialport.png" />
+</div>
+<h3 id="上傳程式"><a href="#上傳程式">上傳程式</a></h3>
+<p>最後按下 Upload 這個按鈕，等候幾秒鐘，應該會看到板子上的 RX 和 TX 兩個燈號會快速地閃爍，如果上傳成功，狀態列會出現 “Done uploading.” 的訊息：</p>
+<div class="figure">
+<img src="../img/arduino_done_uploading.png" />
+</div>
+<p>上傳完畢後，經過幾秒鐘後，板子上 pin 13 (L) 的燈號(黃色的燈號)就會開始閃爍，如果是的話，代表你的 Arduino 開發環境已準備好，可以開始學習寫 Arduino 程式了：</p>
+<div class="figure">
+<img src="../img/arduino_pin13led.png" />
+</div>
+<p>(本文作者為馬萬圳，原為網誌上的文章，經作者授權給程式人雜誌後由陳鍾誠編輯為此文。原文連結：<a href="http://coopermaa2nd.blogspot.tw/2010/12/arduino.html">http://coopermaa2nd.blogspot.tw/2010/12/arduino.html</a>)</p>
+<h2 id="javascript-2-以原型為主的物件導向-作者陳鍾誠"><a href="#javascript-2-以原型為主的物件導向-作者陳鍾誠">JavaScript (2) – 以原型為主的物件導向 (作者：陳鍾誠)</a></h2>
+<p>雖然說，JavaScript 也能實作很好的物件導向功能，但是如果我們說 JavaScript 是一種物件導向語言，那麼會很容易造成混淆。因為 JavaScript 的物件導向非常非常的特別，與 Java, C++, C# 等語言的物件導向實作方法有很大的不同。</p>
+<p>嚴格的說，JavaScript 是一種原型導向語言，原型導向是一種特別簡單的物件導向實作機制，以下是幾個 JavaScript 的物件範例：</p>
+<pre class="sourceCode JavaScript"><code class="sourceCode javascript">obj = <span class="kw">new</span> <span class="kw">Object</span>()
+<span class="kw">obj</span>.<span class="fu">x</span> = <span class="dv">3</span>;        <span class="co">// 為 obj 新增一個欄位 x，其值設定為 3</span>
+<span class="kw">obj</span>.<span class="fu">y</span> = <span class="dv">5</span>;        <span class="co">// 為 obj 新增一個欄位 y，其值設定為 5</span>
+<span class="kw">obj</span>.<span class="fu">z</span> = <span class="kw">obj</span>.<span class="fu">x</span> + <span class="kw">obj</span>.<span class="fu">y</span>;    <span class="co">// 為 obj 新增一個欄位 z，其值設定為 x+y</span></code></pre>
+<p>對於曾經使用像 Java 這種傳統物件導向語言的人而言，會感覺到上述的程式很奇特，因為 obj 一開始只是一個空物件，並沒有包含任何的欄位，但是我們透過指定的方式，動態的為物件增添了 x, y, z 等欄位。</p>
+<p>物件導向基本上有三大特性，1.封裝 2. 繼承 3. 多型，瞭解這三個特性的實作方式，通常就可以學會一種語言的物件導向語法了，以下我們將分別針對 JavaScript 中的這三大特性進行介紹。</p>
+<h3 id="javascript-物件的封裝"><a href="#javascript-物件的封裝">JavaScript 物件的封裝</a></h3>
+<p>物件導向中的封裝特性，是指將「資料」與「函數」封入一種稱為「物件」的結構當中，以下是 JavaScript 的一個物件範例，其中 x, y 是資料，而 sum 則是函數，這些成員都被封裝在 obj 這樣一個建構函數當中，因此我們呼叫 var o = new obj() 這個指令時，就會建立一個新的物件，並傳回給 o 變數。</p>
+<p>程式範例: object.htm</p>
+<pre class="sourceCode html"><code class="sourceCode html"><span class="kw">&lt;html&gt;</span>
+<span class="kw">&lt;body&gt;</span>
+
+<span class="kw">&lt;script</span><span class="ot"> type=</span><span class="st">&quot;text/javascript&quot;</span><span class="kw">&gt;</span>
+<span class="er">function obj() {</span>
+  <span class="kw">this</span>.<span class="fu">x</span> = <span class="dv">3</span>;        <span class="co">// 第一種寫法，為 obj 新增一個欄位 x，其值設定為 3</span>
+  <span class="kw">this</span>[<span class="st">&quot;y&quot;</span>] = <span class="dv">5</span>;     <span class="co">// 第二種寫法，為 obj 新增一個欄位 y，其值設定為 5</span>
+<span class="er">  this.sum = function() { return this.x + this.y; } // 為 obj 新增一個欄位 add，其值為一個匿名函數</span>
+}
+
+<span class="er">var o = new obj();</span>
+
+<span class="er">document.write(&quot;o[&#39;x&#39;]=&quot;+o[&#39;x&#39;]+&quot; y=&quot;+o.y+&quot; sum()=&quot;+o.sum());</span>
+<span class="kw">&lt;/script&gt;</span>
+
+<span class="kw">&lt;/body&gt;</span>
+<span class="kw">&lt;/html&gt;</span></code></pre>
+<p>執行結果</p>
+<div class="figure">
+<img src="../img/jsObjectOutput.jpg" />
+</div>
+<p>在 JavaScript 當中，並沒有像 Java 或 C# 這樣的 class 關鍵字，沒有類別這樣的明顯概念，不會外顯的定義出物件的樣板，而是直接在建構函數中建立 this 物件的成員，然後在用 new 建立物件，這種方式很動態也很彈性，但卻不是一般的物件導向製作方式，與 Java 和 C# 有很明顯的差異。</p>
+<h3 id="javascript-物件的繼承"><a href="#javascript-物件的繼承">JavaScript 物件的繼承</a></h3>
+<p>物件導向中的繼承特性，是指「子物件」可以繼承「父物件」的資料與函數，並且進行修改，這樣我們就不需要重複的實作父物件已經有的函數，或者定義父物件已經有的資料，以達成程式碼重用的目的。</p>
+<p>以下範例中的 Student 物件就繼承了 Person 物件，其方法是在 Student 物件的建構函數中，指定 this.prototype = Person 以達到繼承的目的，然後再呼叫 this.prototype(name, age) 以呼叫父物件的建構函數，建立出 name, age, toStr() 物件內容。</p>
+<p>程式範例: inheritance.htm</p>
+<pre class="sourceCode html"><code class="sourceCode html"><span class="kw">&lt;html&gt;</span>
+<span class="kw">&lt;body&gt;</span>
+
+<span class="kw">&lt;script</span><span class="ot"> type=</span><span class="st">&quot;text/javascript&quot;</span><span class="kw">&gt;</span>
+<span class="kw">function</span> Person(name, age) {
+  <span class="kw">this</span>.<span class="fu">name</span> = name;
+  <span class="kw">this</span>.<span class="fu">age</span> = age;
+<span class="er">  this.toStr = function() { </span>
+    <span class="kw">return</span> <span class="st">&quot;Person:name=&quot;</span>+<span class="kw">this</span>.<span class="fu">name</span>+<span class="st">&quot; age=&quot;</span>+<span class="kw">this</span>.<span class="fu">age</span>; 
+  }
+}
+<span class="kw">var</span> john = <span class="kw">new</span> Person(<span class="st">&quot;John&quot;</span>, <span class="dv">40</span>);
+
+<span class="er">document.write(&quot;john.toStr()=&quot;+john.toStr()+&quot;&lt;BR/&gt;&quot;);</span>
+
+<span class="kw">function</span> Student(name, age, grade) {
+  <span class="kw">this</span>.<span class="fu">prototype</span> = Person;
+  <span class="kw">this</span>.<span class="fu">prototype</span>(name, age);
+  <span class="kw">this</span>.<span class="fu">grade</span> = grade;
+<span class="er">  this.toStr = function() { </span>
+    <span class="kw">return</span> <span class="st">&quot;Student:name=&quot;</span>+<span class="kw">this</span>.<span class="fu">name</span>+<span class="st">&quot; age=&quot;</span>+<span class="kw">this</span>.<span class="fu">age</span>+<span class="st">&quot; grade=&quot;</span>+<span class="kw">this</span>.<span class="fu">grade</span>; 
+  }
+}
+
+<span class="kw">var</span> tony = <span class="kw">new</span> Student(<span class="st">&quot;Tony&quot;</span>, <span class="dv">19</span>, <span class="st">&quot;Freshman&quot;</span>);
+
+<span class="er">document.write(&quot;tony.toStr()=&quot;+tony.toStr()+&quot;&lt;BR/&gt;&quot;);</span>
+<span class="kw">&lt;/script&gt;</span>
+
+<span class="kw">&lt;/body&gt;</span>
+<span class="kw">&lt;/html&gt;</span></code></pre>
+<p>執行結果</p>
+<div class="figure">
+<img src="../img/jsInheritanceOutput.jpg" />
+</div>
+<p>從上述的範例中您可以看到，JavaScript 的繼承是直接在子物件的建構函數當中呼叫父物件的建構函數所完成的，範例中的 prototype 這個屬性實作了繼承的特性，並且透過 this.prototype(name, age) 這樣的呼叫完成了父物件初始化的動作，這種方式繼動態又彈性，但仍然與 Java, C# 等語言有很大的不同，因此我們稱這種方式為基與原型的物件導向實作方式。</p>
+<h3 id="javascript-物件的多型"><a href="#javascript-物件的多型">JavaScript 物件的多型</a></h3>
+<p>物件導向中的多型特性，是指當不同的「子物件」繼承同一個「父物件」時，我們可以透過宣告父物件容器，卻將內容指向子物件的方式，以便呼叫到不同子物件中的對應函數。</p>
+<p>以下範例中的 var array = [ john, tony ] 這一行，其中的 john 是 Person 類型的物件，tony 是 Student 類型的物件，但是由於 Student 繼承了 Person，而且兩者都有 toStr() 函數，因此當我們用 for (i in array) … array[i].toStr() … 這樣的方式呼叫 array[i].toStr() 時，對 john 物件會呼叫到 Person 的 toStr(), 而對 tony 物件會呼叫到 Student 的 toStr(), 這樣就達到了多型的結果。</p>
+<p>程式範例: polymorphism.htm</p>
+<pre class="sourceCode html"><code class="sourceCode html"><span class="kw">&lt;html&gt;</span>
+<span class="kw">&lt;body&gt;</span>
+ 
+<span class="kw">&lt;script</span><span class="ot"> type=</span><span class="st">&quot;text/javascript&quot;</span><span class="kw">&gt;</span>
+<span class="kw">function</span> Person(name, age) {
+  <span class="kw">this</span>.<span class="fu">name</span> = name;
+  <span class="kw">this</span>.<span class="fu">age</span> = age;
+<span class="er">  this.toStr = function() { </span>
+    <span class="kw">return</span> <span class="st">&quot;Person:name=&quot;</span>+<span class="kw">this</span>.<span class="fu">name</span>+<span class="st">&quot; age=&quot;</span>+<span class="kw">this</span>.<span class="fu">age</span>; 
+  }
+}
+<span class="kw">var</span> john = <span class="kw">new</span> Person(<span class="st">&quot;John&quot;</span>, <span class="dv">40</span>);
+ 
+<span class="kw">function</span> Student(name, age, grade) {
+  <span class="kw">this</span>.<span class="fu">prototype</span> = Person;
+  <span class="kw">this</span>.<span class="fu">prototype</span>(name, age);
+  <span class="kw">this</span>.<span class="fu">grade</span> = grade;
+<span class="er">  this.toStr = function() { </span>
+    <span class="kw">return</span> <span class="st">&quot;Student:name=&quot;</span>+<span class="kw">this</span>.<span class="fu">name</span>+<span class="st">&quot; age=&quot;</span>+<span class="kw">this</span>.<span class="fu">age</span>+<span class="st">&quot; grade=&quot;</span>+<span class="kw">this</span>.<span class="fu">grade</span>; 
+  }
+}
+ 
+<span class="kw">var</span> tony = <span class="kw">new</span> Student(<span class="st">&quot;Tony&quot;</span>, <span class="dv">19</span>, <span class="st">&quot;Freshman&quot;</span>);
+ 
+<span class="kw">var</span> array = [ john, tony ];
+ 
+<span class="kw">for</span> (i <span class="kw">in</span> array)
+<span class="er">  document.write(&quot;array[&quot;+i+&quot;].toStr()=&quot;+array[i].toStr()+&quot;&lt;BR/&gt;&quot;);</span>
+<span class="kw">&lt;/script&gt;</span>
+ 
+<span class="kw">&lt;/body&gt;</span>
+<span class="kw">&lt;/html&gt;</span></code></pre>
+<p>執行結果</p>
+<div class="figure">
+<img src="../img/jsPolymorphismOutput.jpg" />
+</div>
+<h3 id="javascript-物件的精簡表示法-json-物件資料交換格式"><a href="#javascript-物件的精簡表示法-json-物件資料交換格式">JavaScript 物件的精簡表示法 – JSON 物件資料交換格式</a></h3>
+<p>如果我們想直接在程式中宣告一個複雜的物件，可以使用 JavaScript 中的 {…} 與 […] 的語法組合，用簡單的語法建構出整個物件。這種格式也常被用在網頁程式的資料交換當中，因此有一個很特別的名稱叫 JSON （Javascript Object Notation）。</p>
+<p>目前網路上最常使用的資料交換格式是 XML，但是 XML 文件很繁瑣且囉嗦，讓使用者撰寫不方便，而且不容易嵌入網頁中進行處理。為了讓網頁上的共通程式語言 JavaScript 可以輕易的交換資料，網頁程式的設計者也常用 JSON 取代 XML 進行資料交換。</p>
+<p>以下是一個採用 JSON 格式的朋友資料範例，該範例中有兩個朋友，一個是 John, 22 歲，另一個是 Mary, 28 歲。</p>
+<pre class="sourceCode JavaScript"><code class="sourceCode javascript">{
+  <span class="st">&quot;friends&quot;</span>: [
+     {<span class="st">&quot;name&quot;</span>: <span class="st">&quot;John&quot;</span>, <span class="st">&quot;age&quot;</span>: <span class="dv">22</span> }
+     {<span class="st">&quot;name&quot;</span>: <span class="st">&quot;Mary&quot;</span>, <span class="st">&quot;age&quot;</span>: <span class="dv">28</span> }
+  ]
+}</code></pre>
+<p>程式範例：json.htm</p>
+<pre class="sourceCode html"><code class="sourceCode html"><span class="kw">&lt;html&gt;</span>
+<span class="kw">&lt;body&gt;</span>
+
+<span class="kw">&lt;script</span><span class="ot"> type=</span><span class="st">&quot;text/javascript&quot;</span><span class="kw">&gt;</span>
+
+<span class="kw">var</span> george = {
+  <span class="st">&quot;name&quot;</span>: <span class="st">&quot;George&quot;</span>,
+  <span class="st">&quot;age&quot;</span>: <span class="dv">25</span>,
+  <span class="st">&quot;friends&quot;</span>: [
+     {<span class="st">&quot;name&quot;</span>: <span class="st">&quot;John&quot;</span>, <span class="st">&quot;age&quot;</span>: <span class="dv">22</span> },
+     {<span class="st">&quot;name&quot;</span>: <span class="st">&quot;Mary&quot;</span>, <span class="st">&quot;age&quot;</span>: <span class="dv">28</span> }
+  ]
+};
+
+<span class="kw">document</span>.<span class="fu">write</span>(<span class="st">&quot;george.age=&quot;</span>+<span class="kw">george</span>.<span class="fu">age</span>+<span class="st">&quot;&lt;br/&gt;&quot;</span>);
+<span class="kw">document</span>.<span class="fu">write</span>(<span class="st">&quot;george.friends:</span><span class="ch">\n</span><span class="st">&lt;ol&gt;&quot;</span>);
+<span class="kw">var</span> friends = <span class="kw">george</span>.<span class="fu">friends</span>;
+<span class="kw">for</span> (i <span class="kw">in</span> friends)
+  <span class="kw">document</span>.<span class="fu">write</span>(<span class="st">&quot;&lt;li&gt;&quot;</span>+friends[i].<span class="fu">name</span>+<span class="st">&quot; is &quot;</span>+friends[i].<span class="fu">age</span>+<span class="st">&quot;years old!&lt;/li&gt;&quot;</span>);
+<span class="kw">document</span>.<span class="fu">write</span>(<span class="st">&quot;&lt;/ol&gt;&quot;</span>);
+<span class="kw">&lt;/script&gt;</span>
+ 
+<span class="kw">&lt;/body&gt;</span>
+<span class="kw">&lt;/html&gt;</span></code></pre>
+<p>執行結果</p>
+<div class="figure">
+<img src="../img/jsJsonOutput.jpg" />
+</div>
+<h3 id="結語"><a href="#結語">結語</a></h3>
+<p>以上我們簡單的介紹了 JavaScript 的物件導向功能，這種物件導向的實作方式由於是以原型為核心的，因此筆者喜歡稱 JavaScript 為原型導向 (prototype oriented) 的語言，雖然並不是很多人使用「原型導向」這個用法。</p>
+<p>在這兩期當中，我們從第一期的 JavaScript 語法基礎開始，到本期的物件導向介紹，大致已經將 JavaScript 的基本語法介紹完畢。在下一期當中，我們將會討論較為進階的 JavaScript 語言特性，像是匿名函數、閉包 (closure)、this 關鍵字的用法等等，我們下期見！</p>
+<h2 id="三角網格化-以z-scan演算法為例-作者吳栢融"><a href="#三角網格化-以z-scan演算法為例-作者吳栢融">三角網格化 –以Z-Scan演算法為例 (作者：吳栢融)</a></h2>
+<p>三角網格化（Triangulation）是電腦圖學（Computer Graphics）中有關建模技術（Modeling）的一個關鍵課題，我們都知道模型檔案最基本的由點和面構成。而對於一個面所構成的點我們並無嚴格規範，換言之，三角形，矩形都是一個面。如此一來再檔案的存取上造成許多麻煩的問題，如必須動態配置每一個面到底有多少索引、規劃每個面採何種方式來絢爛（Rending）。另外非常多的圖學演算法只作用與三角網格化後的多邊形網格，故通常我們會將模型轉換成三角形網格後發布、或做其他演算。</p>
+<p>三角網格化有非常多方法，筆者就不再一一細說，本文以Z-Scan的方式來討論如何將模型三角化。有關Z-Scan的方法提出筆者目前尚未得知為何人。如有讀者知道還請<a href="wupojung@gmail.com">來信</a>告知。感謝!!</p>
+<h3 id="基礎理論"><a href="#基礎理論">基礎理論</a></h3>
+<p>我們都知道一個模型由點和面構成，但對於三角網格而言，他們是否存在一定的關係呢？事實上，我們可以透過歸納法來驗證下述公式。</p>
+<p><code>F=V-2</code></p>
+<p>其中V為構成該mesh的點的個數，F為若將該mesh三角網格化以後會得到的面的數量。我們可以參考下圖驗證之。</p>
+<div class="figure">
+<img src="../img/20121121131157krcp4.jpg" alt="圖1:面與點的關係圖" /><p class="caption">圖1:面與點的關係圖</p>
+</div>
+<p>此外，通常在OpenGL的環境中我們為了統一<code>normal</code>我們預設mesh的index是依照逆時針的方式記錄。如下圖所示，由於我們統一規範mesh的排序方式，所以我們可以藉由數學公式計算出mesh的normal，而這個normal的功能，筆者就不再這說明了。</p>
+<div class="figure">
+<img src="../img/20121121133615xdbms.jpg" alt="圖2:逆時針送點示意圖" /><p class="caption">圖2:逆時針送點示意圖</p>
+</div>
+<h3 id="程式分析"><a href="#程式分析">程式分析</a></h3>
+<p>為了取得一個最簡單的算法，筆者使用了歸納法來解這個問題，筆者假設圖3為圖2三角化的結果，而該多多邊形共計7個頂點（V=7），估根據上述公式我們可以得到三角化後應該產生5個三角形面（F=V-2=5），筆者將其標記為F0-F4，如圖3所示。並將每個三角形對應的三角形歸納入表1所示。</p>
+<div class="figure">
+<img src="../img/20121121140350n3xny.jpg" alt="圖3:分割圖" /><p class="caption">圖3:分割圖</p>
+</div>
+<div class="figure">
+<img src="../img/20121121140418kgtp4.jpg" alt="表1:三角化後的每個三角形的對應索引" /><p class="caption">表1:三角化後的每個三角形的對應索引</p>
+</div>
+<p>從上表我們可以得到如下關係:</p>
+<ul>
+<li>Index[0] 的次序為 0665544332….不斷遞減</li>
+<li>Index[1] 的次序為 1122334455….不斷遞增</li>
+<li>Index[2] 的次序為 62534… 分成奇偶分別遞增遞減</li>
+</ul>
+<p>於是我們做以下測試:</p>
+<pre class="sourceCode CPP"><code class="sourceCode cpp">    <span class="dt">int</span> V=<span class="dv">7</span>;
+    <span class="dt">int</span> F=V<span class="dv">-2</span>;</code></pre>
+<p>針對Index[0]有:</p>
+<pre class="sourceCode CPP"><code class="sourceCode cpp">    <span class="kw">for</span>(<span class="dt">int</span> i=<span class="dv">0</span>;i&lt;F;i++){
+        <span class="kw">if</span>(i==<span class="dv">0</span>)
+            cout&lt;&lt;i&lt;&lt;<span class="st">&quot;=&quot;</span>&lt;&lt;<span class="dv">0</span>&lt;&lt;endl;
+        <span class="kw">else</span>
+            cout&lt;&lt;i&lt;&lt;<span class="st">&quot;=&quot;</span>&lt;&lt;V-(i<span class="dv">+1</span>)/<span class="dv">2</span>&lt;&lt;endl;
+    }</code></pre>
+<p>針對Index[1]有:</p>
+<pre class="sourceCode CPP"><code class="sourceCode cpp">    <span class="kw">for</span>(<span class="dt">int</span> i=<span class="dv">0</span>;i&lt;F;i++){  
+        cout&lt;&lt;i&lt;&lt;<span class="st">&quot;=&quot;</span>&lt;&lt;(i<span class="dv">+2</span>)/<span class="dv">2</span>&lt;&lt;endl;
+    }</code></pre>
+<p>針對Index[2]有:</p>
+<pre class="sourceCode CPP"><code class="sourceCode cpp">    <span class="kw">for</span>(<span class="dt">int</span> i=<span class="dv">0</span>;i&lt;F;i++){  
+        <span class="kw">if</span>(i%<span class="dv">2</span>==<span class="dv">0</span>)
+            cout&lt;&lt;i&lt;&lt;<span class="st">&quot;=&quot;</span>&lt;&lt;V-(i<span class="dv">+2</span>)/<span class="dv">2</span>&lt;&lt;endl;
+        <span class="kw">else</span>
+            cout&lt;&lt;i&lt;&lt;<span class="st">&quot;=&quot;</span>&lt;&lt;(i<span class="dv">+3</span>)/<span class="dv">2</span>&lt;&lt;endl;
+    }</code></pre>
+<p>根據上述的分開測試。我們可以將所有程式合併在一起，如下所示：</p>
+<h3 id="完整代碼"><a href="#完整代碼">完整代碼</a></h3>
+<pre class="sourceCode CPP"><code class="sourceCode cpp">    <span class="kw">for</span>(<span class="dt">int</span> i=<span class="dv">0</span>;i&lt;F;i++)
+    { 
+            <span class="kw">if</span>(i==<span class="dv">0</span>){
+                 cout&lt;&lt;i&lt;&lt;<span class="st">&quot;=&quot;</span>&lt;&lt;<span class="dv">0</span>&lt;&lt;<span class="st">&quot;</span><span class="ch">\t</span><span class="st">&quot;</span>&lt;&lt;i<span class="dv">+1</span>&lt;&lt;<span class="st">&quot;</span><span class="ch">\t</span><span class="st">&quot;</span>&lt;&lt;V<span class="dv">-1</span>&lt;&lt;endl;
+            }<span class="kw">else</span>{
+                  <span class="kw">if</span>(i%<span class="dv">2</span>==<span class="dv">0</span>)
+                     cout&lt;&lt;i&lt;&lt;<span class="st">&quot;=&quot;</span>&lt;&lt;V-(i<span class="dv">+1</span>)/<span class="dv">2</span>&lt;&lt;<span class="st">&quot;</span><span class="ch">\t</span><span class="st">&quot;</span>&lt;&lt;(i<span class="dv">+2</span>)/<span class="dv">2</span>&lt;&lt;<span class="st">&quot;</span><span class="ch">\t</span><span class="st">&quot;</span>&lt;&lt;V-(i<span class="dv">+2</span>)/<span class="dv">2</span>&lt;&lt;endl;
+                  <span class="kw">else</span>
+                    cout&lt;&lt;i&lt;&lt;<span class="st">&quot;=&quot;</span>&lt;&lt;V-(i<span class="dv">+1</span>)/<span class="dv">2</span>&lt;&lt;<span class="st">&quot;</span><span class="ch">\t</span><span class="st">&quot;</span>&lt;&lt;(i<span class="dv">+2</span>)/<span class="dv">2</span>&lt;&lt;<span class="st">&quot;</span><span class="ch">\t</span><span class="st">&quot;</span>&lt;&lt;(i<span class="dv">+3</span>)/<span class="dv">2</span>&lt;&lt;endl;                 
+            }
+       
+    }</code></pre>
+<h3 id="後記"><a href="#後記">後記</a></h3>
+<p>其實三角網格化還有非常多的方式可以完成，筆者本篇僅拋磚引玉，希望大家可以分享新的方法。</p>
+<h2 id="智慧型自動編譯-c-語言-vb-6.0-8x8-led-to-keil-c-code-for-89s51-作者廖憲得"><a href="#智慧型自動編譯-c-語言-vb-6.0-8x8-led-to-keil-c-code-for-89s51-作者廖憲得">智慧型自動編譯 C 語言 VB 6.0 8X8 LED To Keil C Code For 89S51 (作者：廖憲得)</a></h2>
+<h3 id="軟體介面"><a href="#軟體介面">軟體介面</a></h3>
+<div class="figure">
+<img src="../img/vb1.png" />
+</div>
+<h3 id="軟體介紹與設計構想"><a href="#軟體介紹與設計構想">軟體介紹與設計構想</a></h3>
+<p>這是一套由Visual Basic 6.0 設計的軟體，使用來與 89S51、8051 等其他單晶片結合使用的自動轉C語言工具。它的功能可以由使用者輕輕鬆鬆使用滑鼠點一點想要的花樣，並且一鍵自動產生為C語言的程式碼，省得晶片開發設計者需要花費許多計算時間來編譯一套屬於自我花樣的C語言，利用這套軟體只需要動動滑鼠，小小的幾個動作就能夠編譯出C語言的程式碼，甚至它可以搭配Keil C 等其他 89S51、8051 單晶片的編譯軟體。</p>
+<p>由於身為高職生的我，因為單晶片C語言89S51設計這門課的專題所需，為了有效率且快速的完成在矩陣式8x8 LED小綠人、小紅人…等等專題上，很多花樣LED燈的閃法、跑法、亮法剛開始都需要以人工的方式慢慢計算在編譯，常常因為一個不小心算錯而導致LED燈的變化不如預期，而使用Visual Basic 6.0 開發了這一套軟體，只需要透過基本的演算法、搭配字串的資料處理，很快的就能夠編寫出這樣的一套軟體。</p>
+<h3 id="軟體用途與未來趨勢"><a href="#軟體用途與未來趨勢">軟體用途與未來趨勢</a></h3>
+<p>其實開發這樣的軟體不只是可以運用在8X8 LED 上面，甚至我也撰寫過七段顯示器、蜂鳴器…等等的輔助軟體，相信不只是可以運用在C語言，也可以直接編譯成Java、C# 等等其他程式語言。甚至是運用在其他系統上，利用某個語言來編譯另外一個語言的概念可以衍生出更多讓開發變的更方便更便利的輔助軟體。</p>
+<p>未來趨勢當然不只是運用在單晶片、專題上面，甚至可能連手機遊戲、APP，在日後都有相關的輔助設計軟體產生。這種〝為了讓開發變得更便利〞的輔助軟體，在設計上也需要許多字串處理的巧思，只需要透過一些簡易的硬體演算法，像是在什麼情況中給0或給1等等，在設計此類型的輔助軟體就顯得相當容易！</p>
+<h3 id="使用效果"><a href="#使用效果">使用效果</a></h3>
+<div class="figure">
+<img src="../img/vb2.png" />
+</div>
+<div class="figure">
+<img src="../img/vb3.png" />
+</div>
+<h3 id="部分程式碼與註解"><a href="#部分程式碼與註解">部分程式碼與註解</a></h3>
+<pre class="VisualBasic"><code>&#39; 以下開始皆為編譯成 C 語言的核心資料字串處理部分
+&#39; (KeilC 為輸出的 TextBox 文字方塊)
+KeilC = KeilC &amp; &quot;//此 89S51 C語言單晶片程式碼為 Visual Basic 6.0 智慧型程式碼產生器產生&quot; &amp; vbCrLf
+KeilC = KeilC &amp; &quot;//軟體設計 廖憲得&quot; &amp; vbCrLf &amp; vbCrLf
+KeilC = KeilC &amp; &quot;//宣告&quot; &amp; vbCrLf
+KeilC = KeilC &amp; &quot;#include &lt;reg51.h&gt;&quot; &amp; vbCrLf
+KeilC = KeilC &amp; &quot;#define OutputP0 P0&quot; &amp; vbCrLf
+KeilC = KeilC &amp; &quot;#define OutputP1 P1&quot; &amp; vbCrLf
+KeilC = KeilC &amp; &quot;#define OutputP2 P2&quot; &amp; vbCrLf
+KeilC = KeilC &amp; &quot;#define OutputP3 P3&quot; &amp; vbCrLf
+KeilC = KeilC &amp; &quot;void delay(int);&quot; &amp; vbCrLf &amp; vbCrLf
+&#39; OutputsFrame.Tag 為 Visual Basic 中設定的 N 個動作存在 OutputsFrame.Tag 中 利用來當動態陣列數用
+&#39; 而 VBOutputs0、VBOutputs1、VBOutputs2、VBOutputs3 則是分別需要輸出的資料 (部分為 16進制 )
+KeilC = KeilC &amp; &quot;char code OutTempP0 [ &quot; &amp; OutputsFrame.Tag &amp; &quot; ]= { &quot; &amp; VBOutputs0 &amp; &quot; }; &quot; &amp; vbCrLf
+KeilC = KeilC &amp; &quot;char code OutTempP1 [ &quot; &amp; OutputsFrame.Tag &amp; &quot; ]= { &quot; &amp; VBOutputs1 &amp; &quot; }; &quot; &amp; vbCrLf
+KeilC = KeilC &amp; &quot;char code OutTempP2 [ &quot; &amp; OutputsFrame.Tag &amp; &quot; ]= { &quot; &amp; VBOutputs2 &amp; &quot; }; &quot; &amp; vbCrLf
+KeilC = KeilC &amp; &quot;char code OutTempP3 [ &quot; &amp; OutputsFrame.Tag &amp; &quot; ]= { &quot; &amp; VBOutputs3 &amp; &quot; }; &quot; &amp; vbCrLf
+
+KeilC = KeilC &amp; &quot; main()&quot; &amp; vbCrLf
+KeilC = KeilC &amp; &quot;{&quot; &amp; vbCrLf
+KeilC = KeilC &amp; &quot;unsigned char i;&quot; &amp; vbCrLf
+KeilC = KeilC &amp; &quot;        while(1)&quot; &amp; vbCrLf
+KeilC = KeilC &amp; &quot;{&quot; &amp; vbCrLf
+KeilC = KeilC &amp; &quot;for (i=0;i&lt;&quot; &amp; OutputsFrame.Tag &amp; &quot;;i++)&quot; &amp; vbCrLf
+KeilC = KeilC &amp; &quot;{&quot; &amp; vbCrLf
+&#39; OutputP0、OutputP1、OutputP2、OutputP3 為 89S51 單晶片的 PX 輸出變數
+&#39; OutTempP0、OutTempP1、OutTempP2、OutTempP3 則為上面自動建立的陣列
+&#39; 原理就是把同一系列的一個所有動作自動存放到一個陣列當中，而要呼應這個動作就只需要做以下的呼叫指令。
+KeilC = KeilC &amp; &quot; OutputP0 = OutTempP0 [i];&quot; &amp; vbCrLf
+KeilC = KeilC &amp; &quot; OutputP1 = OutTempP1 [i];&quot; &amp; vbCrLf
+KeilC = KeilC &amp; &quot; OutputP2 = OutTempP2 [i];&quot; &amp; vbCrLf
+KeilC = KeilC &amp; &quot; OutputP3 = OutTempP3 [i];&quot; &amp; vbCrLf
+
+&#39; delay 為 C 語言中的延遲副程式 裡面的數字 20000 是拿來控制執行速度的
+KeilC = KeilC &amp; &quot; delay(20000);&quot; &amp; vbCrLf
+
+KeilC = KeilC &amp; &quot;}&quot; &amp; vbCrLf
+KeilC = KeilC &amp; &quot;}&quot; &amp; vbCrLf
+KeilC = KeilC &amp; &quot;}&quot; &amp; vbCrLf &amp; vbCrLf
+KeilC = KeilC &amp; &quot;//副程式&quot; &amp; vbCrLf
+KeilC = KeilC &amp; &quot;void delay(int x)&quot; &amp; vbCrLf
+KeilC = KeilC &amp; &quot;{&quot; &amp; vbCrLf
+KeilC = KeilC &amp; &quot;    int i;&quot; &amp; vbCrLf
+KeilC = KeilC &amp; &quot;    for (i=0;i&lt;x;i++);&quot; &amp; vbCrLf
+KeilC = KeilC &amp; &quot;}&quot; &amp; vbCrLf
+
+&#39; 哪一些要接地  設 P0 (OutTempP0) 要為控制是否接地的資料輸出位置
+For i = 7 To 0 Step -1
+        Nows = i
+        OpenOff = False
+    For J = 7 To 0 Step -1
+        If LED(Nows).Value = 1 Then OpenOff = True
+        Nows = Nows + 8
+    Next J
+        If OpenOff Then
+            P0 = P0 &amp; &quot;1&quot; &#39; 輸出 1 = 接地
+        Else
+            P0 = P0 &amp; &quot;0&quot; &#39; 輸出 0 = 導通
+        End If
+Next i
+&#39; 以上皆為演算過程，這部分可以跳過，只要依照您的條件設定輸出 0 或者 1 即可
+    OutTempP0 = OutTempP0 &amp; P0 &amp; &quot;,&quot;
+&#39; OutTempP0 為 P0 的資料輸出暫存變數 也是從這裡把資料送到 C 語言的陣列當中</code></pre>
+<p>(本文作者為廖憲得, 聯絡方式為 Facebook: <a href="http://www.facebook.com/MicrosoftDes">http://www.facebook.com/MicrosoftDes</a>, MSN: <script type="text/javascript">
+<!--
+h='&#x6d;&#x73;&#110;&#46;&#x63;&#x6f;&#x6d;';a='&#64;';n='&#100;&#x65;&#46;&#x63;&#x6f;&#x6d;';e=n+a+h;
+document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'">'+'De.com@msn.com'+'<\/'+'a'+'>');
+// -->
+</script><noscript>&#68;&#x65;&#46;&#x63;&#x6f;&#x6d;&#64;&#x6d;&#x73;&#110;&#46;&#x63;&#x6f;&#x6d;&#32;&#40;&#100;&#x65;&#46;&#x63;&#x6f;&#x6d;&#32;&#x61;&#116;&#32;&#x6d;&#x73;&#110;&#32;&#100;&#x6f;&#116;&#32;&#x63;&#x6f;&#x6d;&#x29;</noscript>)</p>
+<h1 id="雜誌訊息"><a href="#雜誌訊息">雜誌訊息</a></h1>
+<h2 id="授權聲明"><a href="#授權聲明">授權聲明</a></h2>
+<p>本雜誌採用 <a href="http://creativecommons.org/licenses/by-nc-sa/3.0/tw/">創作共用的「姓名標示、非商業性、相同方式分享」授權</a>，其中許多內容來自於維基百科與開放原始碼社群，若您想要修改本書產生衍生著作時，至少應該遵守下列授權條件：</p>
+<ol style="list-style-type: decimal">
+<li>標示原作者姓名</li>
+<li>不可以作為商業用途。</li>
+<li>採用「姓名標示-非商業性-相同方式分享」的方式公開衍生著作。</li>
+<li>不得去除公益捐贈的相關描述。</li>
+</ol>
+<h2 id="讀者訂閱"><a href="#讀者訂閱">讀者訂閱</a></h2>
+<p>程式人雜誌是一個結合「開放原始碼與公益捐款活動」的雜誌，簡稱「開放公益雜誌」。開放公益雜誌本著「讀書做善事、寫書做公益」的精神，我們非常歡迎程式人認養專欄、或者捐出您的網誌，如果您願意成為本雜誌的專欄作家，請加入 <a href="https://www.facebook.com/groups/programmerMagazine/">程式人雜誌社團</a> 一同共襄盛舉。</p>
+<p>我們透過發行這本雜誌，希望讓大家可以讀到想讀的書，學到想學的技術，同時也讓寫作的朋友的作品能產生良好價值 – 那就是讓讀者根據雜誌的價值捐款給慈善團體。 讀雜誌做公益也不需要有壓力，您不需要每讀一本就急著去捐款，您可以讀了十本再捐，或者使用固定的月捐款方式，當成是雜誌訂閱費，或者是季捐款、一年捐一次等都 OK ! 甚至是單純當個讀者我們也都很歡迎！ 本雜誌每期參考價：NT 50 元，如果您喜歡本雜誌，請將書款捐贈公益團體。例如可捐贈給「羅慧夫顱顏基金會 彰化銀行(009) 帳號：5234-01-41778-800」。(若匯款要加註可用「程式人雜誌」五個字)</p>
+<p>想訂閱本雜誌的讀者，請按 <a href="https://docs.google.com/spreadsheet/viewform?fromEmail=true&amp;formkey=dG1TcER6Q3h1ZkpacFpDeEVFTDBLeVE6MQ">我想訂閱程式人雜誌</a> 連結並填寫表單，我們會在每一期雜誌出刊時寄送通知與下載網址到您的信箱。</p>
+<h2 id="投稿須知"><a href="#投稿須知">投稿須知</a></h2>
+<p><em>給專欄寫作者：</em> 做公益不需要有壓力。如果您願意撰寫專欄，您可以輕鬆的寫，如果當月的稿件出不來，我們會安排其他稿件上場。</p>
+<p><em>給網誌捐贈者：</em> 如果您沒時間寫專欄或投稿，沒關係，只要將您的網誌以 <a href="http://creativecommons.org/licenses/by-nc-sa/3.0/tw/">創作共用的「姓名標示、非商業性、相同方式分享」授權</a> 並通知我們，我們會自動從中選取需要的文章進行編輯，放入適當的雜誌當中出刊。</p>
+<p><em>給文章投稿者：</em> 程式人雜誌非常歡迎您加入作者的行列，如果您想撰寫任何文章或投稿，請用 markdown 或 LibreOffice 編輯好您的稿件，並於每個月 25 日前投稿到<a href="https://www.facebook.com/groups/programmerMagazine/">程式人雜誌社團</a> 的檔案區，我們會盡可能將稿件編入隔月1號出版程式人雜誌當中，也歡迎您到社團中與我們一同討論。</p>
+<p>如果您要投稿給程式人雜誌，請盡可能使用以下兩種方式：</p>
+<ol style="list-style-type: decimal">
+<li>使用 markdown 格式：markdown 的撰寫格式請參考 <a href="../template/template.md">markdown樣版</a></li>
+<li>使用 LibreOffice odt 格式：odt 格式請下載 <a href="../template/template.odt">odt樣版</a>。</li>
+</ol>
+<p>關於以上兩種格式的寫法請下載 <a href="../template.zip">template.zip</a> 以便瞭解寫作的方式與細節，請下載後閱讀 submit.md 檔案。</p>
+<p>我們目前的編輯流程是用 pandoc 軟體將 markdown 轉換成 htm 與 epub 檔，然後再用 calibre 軟體中的 ebook-conver 指令將 epub 轉換為 pdf 與 mobi 檔案，如此就可以得到 htm, epub, pdf, mobi 等四種版本，而針對 pdf 檔我們還進一步區分為 A4 版與 ipad 版，以方便讀者根據需求自行取用。</p>
+<h2 id="參與編輯"><a href="#參與編輯">參與編輯</a></h2>
+<p>您也可以擔任程式人雜誌的編輯，甚至創造一個全新的公益雜誌，我們誠摯的邀請您加入「開放公益出版」的行列，如果您想擔任編輯或創造新雜誌，也歡迎到 <a href="https://www.facebook.com/groups/programmerMagazine/">程式人雜誌社團</a> 來與我們討論相關事宜。</p>
+<h2 id="公益資訊"><a href="#公益資訊">公益資訊</a></h2>
+<table>
+<col width="22%" />
+<col width="20%" />
+<col width="28%" />
+<col width="28%" />
+<thead>
+<tr class="header">
+<th align="left">公益團體</th>
+<th align="left">聯絡資訊</th>
+<th align="left">服務對象</th>
+<th align="left">捐款帳號</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">財團法人羅慧夫顱顏基金會</td>
+<td align="left"><a href="http://www.nncf.org/">http://www.nncf.org/</a> <BR/> <script type="text/javascript">
+<!--
+h='&#110;&#110;&#x63;&#102;&#46;&#x6f;&#114;&#x67;';a='&#64;';n='&#108;&#x79;&#110;&#110;';e=n+a+h;
+document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'">'+e+'<\/'+'a'+'>');
+// -->
+</script><noscript>&#108;&#x79;&#110;&#110;&#32;&#x61;&#116;&#32;&#110;&#110;&#x63;&#102;&#32;&#100;&#x6f;&#116;&#32;&#x6f;&#114;&#x67;</noscript> <BR/> 02-27190408分機 232</td>
+<td align="left">顱顏患者 (如唇顎裂、小耳症或其他罕見顱顏缺陷）</td>
+<td align="left">銀行：009彰化銀行民生分行<BR/> 帳號：5234-01-41778-800</td>
+</tr>
+<tr class="even">
+<td align="left">社團法人台灣省兒童少年成長協會</td>
+<td align="left"><a href="http://www.cyga.org/">http://www.cyga.org/</a> <BR/> <script type="text/javascript">
+<!--
+h='&#x67;&#x6d;&#x61;&#x69;&#108;&#46;&#x63;&#x6f;&#x6d;';a='&#64;';n='&#x63;&#x79;&#x67;&#x61;&#x39;&#x39;';e=n+a+h;
+document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'">'+e+'<\/'+'a'+'>');
+// -->
+</script><noscript>&#x63;&#x79;&#x67;&#x61;&#x39;&#x39;&#32;&#x61;&#116;&#32;&#x67;&#x6d;&#x61;&#x69;&#108;&#32;&#100;&#x6f;&#116;&#32;&#x63;&#x6f;&#x6d;</noscript> <BR/> 04-23058005</td>
+<td align="left">單親、隔代教養.弱勢及一般家庭之兒童青少年</td>
+<td align="left">銀行：新光銀行 <BR/> 戶名：台灣省兒童少年成長協會 <BR/> 帳號：103-0912-10-000212-0</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="footer">
+<a href="https://www.facebook.com/groups/programmerMagazine/">程式人雜誌</a> 2013 年 2 月號, <a href="http://creativecommons.org/licenses/by-nc-sa/3.0/tw/ ">創作共用授權：姓名標示、非商業性、相同方式分享</a>
+</div>
+</body>
+</html>
